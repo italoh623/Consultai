@@ -1,4 +1,4 @@
-Feature: medical record aaaaaaaa
+Feature: medical record
     As a member of the doctor users
     I want to add, remove and edit medical records for my patients
     So that I can generate a complete medical record that helps me and other doctors towards the diagnosis of a specific patient
