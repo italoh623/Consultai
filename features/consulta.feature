@@ -26,7 +26,7 @@ Feature: Consulta
         And O paciente não retorna para a consulta
         Then O sistema encerra a consulta
 
-    Scenario: Reconectar a chamada de vídeo (correto)
+    Scenario: Reconectar a chamada de vídeo (sucesso)
         Given Eu sou a médica “Dr Sarah”
         And Eu estou em uma consulta com a paciente “Marta”
         When A paciente “Marta” perdeu a conexão
