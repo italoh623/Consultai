@@ -24,15 +24,6 @@ Feature: Consulta
         When Eu seleciono o botão de sair da consulta
         Then Eu visualizo uma mensagem de que a consulta ainda não foi finalizada
 
-    Scenario: Reconectar a chamada de vídeo (falha)
-        Given Eu sou a médica “Dr Sarah”
-        And Eu estou em uma consulta com a paciente “Marta”
-        When A paciente “Marta” perdeu a conexão
-        Then Eu visualizo um contador regressivo de “2:00” minutos
-        When O contador chega a zero
-        And O paciente não retorna para a consulta
-        Then O sistema encerra a consulta
-
     Scenario: Reconectar a chamada de vídeo (sucesso)
         Given Eu sou a médica “Dr Sarah”
         And Eu estou em uma consulta com a paciente “Marta”
@@ -41,6 +32,15 @@ Feature: Consulta
         When O paciente não retorna para a consulta
         And O contador não chegou a zero
         Then O consulta continua normalmente
+
+    Scenario: Reconectar a chamada de vídeo (falha)
+        Given Eu sou a médica “Dr Sarah”
+        And Eu estou em uma consulta com a paciente “Marta”
+        When A paciente “Marta” perdeu a conexão
+        Then Eu visualizo um contador regressivo de “2:00” minutos
+        When O contador chega a zero
+        And O paciente não retorna para a consulta
+        Then O sistema encerra a consulta
 
     Scenario: Visualizar o histórico médico do paciente
         Given Eu sou a médica “Dr Sarah”
