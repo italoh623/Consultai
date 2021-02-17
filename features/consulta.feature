@@ -9,13 +9,20 @@ Feature: Consulta
         When Eu seleciono a consulta que está para iniciar
         Then Eu sou direcionado para a vídeo chamada da consulta
 
-    Scenario: Finalizar uma consulta online
+    Scenario: Finalizar uma consulta online (sucesso)
         Given Eu sou a paciente “Marta”
         And Eu estou em uma consulta com a médica ”Dr. Sarah”
         And  A médica já constou a consulta como finalizada
         When Eu seleciono o botão de sair da consulta
         Then Eu visualizo uma mensagem de que a consulta foi finalizada
         And Eu sou direcionada para a página de seleção de consultas
+    
+    Scenario: Finalizar uma consulta online (falha)
+        Given Eu sou a paciente “Marta”
+        And Eu estou em uma consulta com a médica ”Dr. Sarah”
+        And  A médica não constou a consulta como finalizada
+        When Eu seleciono o botão de sair da consulta
+        Then Eu visualizo uma mensagem de que a consulta ainda não foi finalizada
 
     Scenario: Reconectar a chamada de vídeo (falha)
         Given Eu sou a médica “Dr Sarah”
