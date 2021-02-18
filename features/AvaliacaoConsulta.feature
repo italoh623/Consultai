@@ -1,5 +1,15 @@
 Feature: Avaliação da consulta médica pelo paciente
 
+
+Cenário: avaliação da consulta médica realizada pelo paciente para o médico designado mal sucedida
+    Dado estou logado no sistema, como paciente, com login “cadupm”
+    E a consulta médica foi encerrada
+    Quando eu clico no “Sim” referente a pergunta “Deseja fazer uma avaliação da consulta?”
+    E eu NÃO preencho todos os campos requeridos da avaliação sobre a consulta médica
+    E submeto a avaliação
+    Então o sistema retorna uma mensagem de erro sobre os campos preenchidos, como, "Preencha todos os campos corretamente"
+
+
 Cenário: envio automático bem sucedido da avaliação da consulta para email do médico
     Dado o médico de de CRM “8000-CE” habilita na página “Configuração de Conta” na aba “Avaliações” a opção “receber email com cópia da avaliação”
     E estou logado no sistema, como paciente, com login “cadupm”
