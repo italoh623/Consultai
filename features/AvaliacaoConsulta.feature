@@ -41,3 +41,8 @@ Cenário: envio automático mal sucedido da avaliação da consulta para email d
     E submeto a avaliação
     Então sou redirecionado para a página de “Agendamentos”
     E o sistema armazena o contéudo dessa avaliação
+
+
+Cenário: meramente descritivo
+    Dado ...
+    Then ...
