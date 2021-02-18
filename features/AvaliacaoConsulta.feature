@@ -1,6 +1,16 @@
 Feature: Avaliação da consulta médica pelo paciente
 
 
+Cenário: avaliação da consulta médica realizada pelo paciente para o médico designado bem sucedida
+    Dado estou logado no sistema, como paciente, com login “cadupm”
+    E a consulta médica foi encerrada
+    Quando eu clico no “Sim” referente a pergunta “Deseja fazer uma avaliação da consulta?”
+    E eu preencho todos os campos requeridos da avaliação sobre a consulta médica
+    E submeto a avaliação
+    Então sou redirecionado para a página de “Agendamentos”
+    E o sistema armazena o contéudo dessa avaliação
+
+
 Cenário: avaliação da consulta médica realizada pelo paciente para o médico designado mal sucedida
     Dado estou logado no sistema, como paciente, com login “cadupm”
     E a consulta médica foi encerrada
