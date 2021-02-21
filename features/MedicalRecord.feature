@@ -59,5 +59,5 @@ Feature: medical record
         And I'm on the page "Medical Record" of the patient "Gabriel"
         And the fields of the "Age", "Weight", "Height" are filled not filled
         When I request to generate growth curves
-        Then I receive a notification "more data is required to generate growth curves"
+        Then I receive an error message
         And I remain on the page "Medical Record" of the patient "Gabriel"
