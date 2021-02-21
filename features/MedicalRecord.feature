@@ -62,7 +62,7 @@ Feature: medical record
         Then I receive a notification "more data is required to generate growth curves"
         And I remain on the page "Medical Record" of the patient "Gabriel"
 
-    Scenario: create medical record 
+    Scenario: add file  
         Given I'm logged in as a doctor 
         And I'm on the page "My Patients"
         And I can see the patients who have a medical record 
@@ -70,8 +70,16 @@ Feature: medical record
         And I select the patient "Lucas Grisi" 
         And I request to add a Medical Record 
         Then I'm redirected to the page "Medical Record" of the patient "Lucas Grisi"
-        When I add "Blood test Exam" on the "Exams" section 
+        When I add "X-ray Exam" on the "Exams and Images" section 
         Then the exam is saved on the system 
         And the medical record is saved on the system 
         And I remain on the page "Medical Record" of the patient "Lucas Grisi"
     
+    Scenario: receive patient's exam 
+        Given I'm logged in as a doctor 
+        And "Carlos Eduardo" is a patient of mine 
+        And "Carlos Eduardo" sends a Blood Test Exam through message 
+        When I open the exam file 
+        And I request to save on patient's Medical Record  
+        Then the exam is saved on the system 
+        And I remain on the exam file 
