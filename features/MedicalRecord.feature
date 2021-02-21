@@ -61,3 +61,17 @@ Feature: medical record
         When I request to generate growth curves
         Then I receive a notification "more data is required to generate growth curves"
         And I remain on the page "Medical Record" of the patient "Gabriel"
+
+    Scenario: create medical record 
+        Given I'm logged in as a doctor 
+        And I'm on the page "My Patients"
+        And I can see the patients who have a medical record 
+        When I go to the section "Add new patient"
+        And I select the patient "Lucas Grisi" 
+        And I request to add a Medical Record 
+        Then I'm redirected to the page "Medical Record" of the patient "Lucas Grisi"
+        When I add "Blood test Exam" on the "Exams" section 
+        Then the exam is saved on the system 
+        And the medical record is saved on the system 
+        And I remain on the page "Medical Record" of the patient "Lucas Grisi"
+    
