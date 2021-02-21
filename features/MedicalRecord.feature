@@ -44,4 +44,20 @@ Feature: medical record
         Then I receive a notification that an automatic email was sent to "Dra Ana Maria"
         And I remain on the page "Medical Record" of the patient "Carlos"
 
+    Scenario: edit medical record fail
+        Given I'm logged in as a doctor
+        And I'm on the page "My Patients"
+        When I select the medical record of the patient "Lucas Grisi"
+        And I edit the "Weight" from "60kg" to "eighty kilograms"
+        And I save the edit 
+        Then the record is not saved on the system 
+        And I receive an error notification "Wrong input on Weight field, please try again with a valid input."
+        And I remain on the page "Medical Record" of the patient "Lucas Grisi" 
     
+    Scenario: generate growth curves fail
+        Given I'm logged in as a doctor 
+        And I'm on the page "Medical Record" of the patient "Gabriel"
+        And the fields of the "Age", "Weight", "Height" are filled not filled
+        When I request to generate growth curves
+        Then I receive a notification "more data is required to generate growth curves"
+        And I remain on the page "Medical Record" of the patient "Gabriel"
