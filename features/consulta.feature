@@ -56,3 +56,7 @@ Feature: Consulta
         When Eu seleciono a opção
         And Eu confirmo que desejo solicitar uma consulta presencial ao paciente
         Then Uma notificação é enviada para o paciente
+
+    Scenario: Cenário descritivo
+            Given ...
+            Then ...
