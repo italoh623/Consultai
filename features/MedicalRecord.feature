@@ -61,3 +61,25 @@ Feature: medical record
         When I request to generate growth curves
         Then I receive an error message
         And I remain on the page "Medical Record" of the patient "Gabriel"
+
+    Scenario: add file  
+        Given I'm logged in as a doctor 
+        And I'm on the page "My Patients"
+        And I can see the patients who have a medical record 
+        When I go to the section "Add new patient"
+        And I select the patient "Lucas Grisi" 
+        And I request to add a Medical Record 
+        Then I'm redirected to the page "Medical Record" of the patient "Lucas Grisi"
+        When I add "X-ray Exam" on the "Exams and Images" section 
+        Then the exam is saved on the system 
+        And the medical record is saved on the system 
+        And I remain on the page "Medical Record" of the patient "Lucas Grisi"
+    
+    Scenario: receive patient's exam 
+        Given I'm logged in as a doctor 
+        And "Carlos Eduardo" is a patient of mine 
+        And "Carlos Eduardo" sends a Blood Test Exam through message 
+        When I open the exam file 
+        And I request to save on patient's Medical Record  
+        Then the exam is saved on the system 
+        And I remain on the exam file 
