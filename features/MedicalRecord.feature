@@ -79,7 +79,6 @@ Feature: medical record
         Given I'm logged in as a doctor 
         And "Carlos Eduardo" is a patient of mine 
         And "Carlos Eduardo" sends a Blood Test Exam through message 
-        When I open the exam file 
+        When I receive the exam file 
         And I request to save on patient's Medical Record  
-        Then the exam is saved on the system 
-        And I remain on the exam file 
+        Then the exam is saved on the system  
