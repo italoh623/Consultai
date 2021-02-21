@@ -54,4 +54,4 @@ Cenário: meramente descritivo2
 
 criando um commit hipotético, sem sentido mas ok
 
-"novo cenário de AvaliacaoConsulta"
+"pequeno ajuste no novo cenário de AvaliacaoConsulta"
