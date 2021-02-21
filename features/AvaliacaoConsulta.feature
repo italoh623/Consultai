@@ -53,3 +53,5 @@ Cenário: meramente descritivo2
     Então ...
 
 criando um commit hipotético, sem sentido mas ok
+
+"novo cenário de AvaliacaoConsulta"
