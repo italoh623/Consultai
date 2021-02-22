@@ -57,3 +57,7 @@ Feature: Consulta
         And Eu confirmo que desejo solicitar uma consulta presencial ao paciente
         Then Uma notificação é enviada para o paciente
         And A médica vê uma mensagem de que a notificação foi enviada à paciente "Marta"
+
+    Scenario: Cenário extra de roteiro 3
+        Given ...
+        Then ...
