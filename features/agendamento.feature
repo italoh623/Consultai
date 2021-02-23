@@ -43,3 +43,12 @@ Feature: Agendamento
         And A médica "Dr. Daniela" está entre as médicas da lista
         When Eu seleciono a médica "Dra. Daniela"
         Then Eu sou direcionado para a página de escolha de horários
+
+     Scenario: Médico indica horários disponiveis
+        Given Eu sou a médica "Daniela"
+        And Eu estou na página de horários disponiveis
+        And Eu visualizo o calendário
+        When Eu seleciono os dias que estou disponivel
+        And clico no botão salvar
+        Then O sistema me envia uma mensagem de datas confirmadas e ativa os horários no calendário do paciente
+        
