@@ -15,10 +15,10 @@ Feature: Agendamento
         When Eu seleciono um dia no calendário que está disponível
         Then Eu sou direcionado para a página de escolha de horários
        
-     Scenario: Paciente escolhe data indisponivel da consulta
+     Scenario: Paciente escolhe data que não possui médicos disponiveis da consulta
         Given Eu sou a paciente "Maria"
         And Eu estou na página de escolha da data
-        And Eu visualizo o calendário 
+        And Eu visualizo o calendário
         When Eu seleciono um dia no calendário que não está disponível
         Then Eu recebo uma mensagem que a data que escolhi é indisponivel
        
