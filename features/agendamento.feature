@@ -50,6 +50,6 @@ Feature: Agendamento
         And Eu visualizo o calendário
         When Eu seleciono os dias que estou disponivel
         And clico no botão salvar
-        Then O sistema me envia uma mensagem de datas confirmadas e ativa os horários no calendário do paciente
-
+        Then O sistema me envia uma mensagem de datas confirmadas
+        And ativa os horários no calendário do paciente
 
