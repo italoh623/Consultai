@@ -37,4 +37,20 @@ Feature: Agendamento
         Then Eu recebo uma resposta do sistema me avisando que eu não tenho uma consulta marcada com esse médico.
         And eu sou redirecionado ao calendário para cancelar uma data que eu tenha a consulta
 
-   
+    Scenario: Paciente escolhe médico
+        Given Eu sou a paciente "Maria"
+        And Eu estou na página de escolha do médico
+        And Eu visualizo a lista de médicos
+        And A médica "Dr. Daniela" está entre as médicas da lista
+        When Eu seleciono a médica "Dra. Daniela"
+        Then Eu sou direcionado para a página de escolha de horários
+
+     Scenario: Médico indica horários disponiveis
+        Given Eu sou a médica "Daniela"
+        And Eu estou na página de horários disponiveis
+        And Eu visualizo o calendário
+        When Eu seleciono os dias que estou disponivel
+        And clico no botão salvar
+        Then O sistema me envia uma mensagem de datas confirmadas
+        And ativa os horários no calendário do paciente
+
