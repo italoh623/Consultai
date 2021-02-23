@@ -36,12 +36,5 @@ Feature: Agendamento
         When Eu clico no botão cancelar consulta
         Then Eu recebo uma resposta do sistema me avisando que eu não tenho uma consulta marcada com esse médico.
 
-    Scenario: Paciente escolhe médico
-        Given Eu sou a paciente "Maria"
-        And Eu estou na página de escolha do médico
-        And Eu visualizo a lista de médicos
-        And A médica "Dr. Daniela" está entre as médicas da lista
-        When Eu seleciono a médica "Dra. Daniela"
-        Then Eu sou direcionado para a página de escolha de horários
 
    
