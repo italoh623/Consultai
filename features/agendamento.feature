@@ -35,6 +35,6 @@ Feature: Agendamento
         And Eu não estou marcada com uma consulta com a médica "Dra. Daniela"
         When Eu clico no botão cancelar consulta
         Then Eu recebo uma resposta do sistema me avisando que eu não tenho uma consulta marcada com esse médico.
-
+        And eu sou redirecionado ao calendário para cancelar uma data que eu tenha a consulta
 
    
