@@ -48,9 +48,9 @@ Feature: Agendamento
      Scenario: Médico indica horários disponiveis
         Given Eu sou a médica "Daniela"
         And Eu estou na página de horários disponiveis
-        And Eu visualizo o calendário
-        When Eu seleciono os dias que estou disponivel
-        And clico no botão salvar
+        And Eu visualizo uma lista de dias e horários
+        And Eu seleciono os dias e horários que estou disponivel
+        When  clico no botão salvar
         Then O sistema me envia uma mensagem de datas confirmadas
         And ativa os horários no calendário do paciente
 
