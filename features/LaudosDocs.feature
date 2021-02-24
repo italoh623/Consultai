@@ -13,6 +13,12 @@ Feature: Laudos e Docs
 	And I choose the Document “Blood Test Result”
 	Then The Document “Blood Test Result” is properly sent 
 
+	Scenario : View Docs
+	Given I am at the “Doctor” Menu and have Document “Joe X-Ray” stored
+	When I request to view the document
+	And I choose the Document “Joe X-Ray”
+	Then The Document “Joe X-Ray” is properly showed on the screen
+
 	Scenario: Re-edit Document
 	Given I am at the “Send Document” Menu
 	And choose to edit the document “Blood Test”
@@ -23,7 +29,13 @@ Feature: Laudos e Docs
 
 	Scenario: Send Document to non existent user
 	Given I am at the “Send Document” Menu
-	And write an invalid user “Jao Karlos” on the “Destination User” input
+	And write an invalid user “Ze Karlos” on the “Destination User” input
+	Then Document is not sent
+	And Feedback Error Message is displayed
+
+	Scenario: Send non existent Document
+	Given I am at the “Send Document” Menu
+	And write an document name non existent on the machine "Paul's Xray"
 	Then Document is not sent
 	And Feedback Error Message is displayed on the screen
 
