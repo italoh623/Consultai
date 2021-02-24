@@ -23,6 +23,6 @@ Feature: Laudos e Docs
 
 	Scenario: Send Document to non existent user
 	Given I am at the “Send Document” Menu
-	And write an invalid user “Jao Carlos” on the “Destination User” input
+	And write an invalid user “Jao Karlos” on the “Destination User” input
 	Then Document is not sent
 	And Feedback Error Message is displayed
