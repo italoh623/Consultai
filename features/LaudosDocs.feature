@@ -38,3 +38,11 @@ Feature: Laudos e Docs
 	And write an document name non existent on the machine "Paul's Xray"
 	Then Document is not sent
 	And Feedback Error Message is displayed
+	
+-------------------------------------- Dummy for commit ------------------------
+*	Scenario: Send non existent Document 
+*	Given I am at the “Send Document” Menu
+*	And write an document name non existent on the machine "Paul's Xray"
+*	Then Document is not sent
+*	And Feedback Error Message is displayed
+
