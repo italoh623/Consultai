@@ -25,4 +25,5 @@ Feature: Laudos e Docs
 	Given I am at the “Send Document” Menu
 	And write an invalid user “Jao Karlos” on the “Destination User” input
 	Then Document is not sent
-	And Feedback Error Message is displayed
+	And Feedback Error Message is displayed on the screen
+
