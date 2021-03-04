@@ -1,5 +1,5 @@
 # Consultai
-Cultivai is a system for scheduling and making medical appointments.
+Consultai is a system for scheduling and making medical appointments.
 
 
 
