@@ -9,6 +9,7 @@ import { SignUpPatientComponent } from './sign-up-patient/sign-up-patient.compon
 import { MedicalComponent } from './medical/medical.component';
 import { AnamnesisCallComponent } from './anamnesis-call/anamnesis-call.component';
 import { FeedbackComponent } from './anamnesisCall/feedback/feedback.component';
+import { RecordComponent } from './record/record.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FeedbackComponent } from './anamnesisCall/feedback/feedback.component';
     SignUpPatientComponent,
     MedicalComponent,
     AnamnesisCallComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    RecordComponent
   ],
   imports: [
     BrowserModule,
