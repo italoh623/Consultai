@@ -10,6 +10,7 @@ import { MedicalComponent } from './medical/medical.component';
 import { AnamnesisCallComponent } from './anamnesis-call/anamnesis-call.component';
 import { FeedbackComponent } from './anamnesisCall/feedback/feedback.component';
 import { RecordComponent } from './record/record.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RecordComponent } from './record/record.component';
     MedicalComponent,
     AnamnesisCallComponent,
     FeedbackComponent,
-    RecordComponent
+    RecordComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

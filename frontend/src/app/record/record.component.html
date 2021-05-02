@@ -1,1 +1,78 @@
-<p>record works!</p>
+<div class="container" style="margin: 20px;">
+    <div class="container col-3 patient-actions">
+        <div class="card" style="width: 18rem;">
+            <img src="../../assets/avatar-pic.jpeg" class="card-img-top" alt="Foto de Perfil">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center;">John Doe</h5>
+            </div>
+        </div>
+    </div>
+    <div class="container col-9 record-body">
+        <div class="dados-gerais">
+            <h3>Dados Gerais</h3>
+            <ul>
+              <li><b>Data de nascimento:</b> 22/10/1999</li>
+              <li><b>Sexo:</b> Masculino</li>
+            </ul>
+        </div>
+        <hr>
+        <div>
+            <h3>Exames e Imagens</h3>
+            <table class="table" style="border: 1px solid black;">
+                <thead>
+                  <tr>
+                    <th scope="col">Arquivo</th>
+                    <th scope="col">Data de envio</th>
+                    <th scope="col">Enviado por</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><a href="#">Exame de sangue</a></th>
+                    <td>30/03/2021</td>
+                    <td>Dr. Arthur Fonseca</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="#">Radiografia do pulmao</a></th>
+                    <td>21/02/2020</td>
+                    <td>Dra. Maria Andrade</td>
+                  </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <!-- <span>Adicionar arquivo</span> -->
+                <button>Adicionar arquivo <i class="fas fa-file-upload"></i></button>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div>
+                <h3 style="float: left;">Consultas</h3>
+                <button type="button" class="btn btn-success" style="margin-left: 10px;">+</button>
+            </div>
+            <table class="table" style="border: 1px solid black;">
+                <thead>
+                  <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Médico(a)</th>
+                    <th scope="col">Especialidade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><a href="#">13/01/2021</a></th>
+                    <td>Dra. Bruna Almeida</td>
+                    <td>Cirurgia Geral</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="#">22/11/2020</a></th>
+                    <td>Dr. Hannibal Lector</td>
+                    <td>Psiquiatria</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-record',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecordComponent implements OnInit {
 
-  constructor() { }
+  patientId: string | null;
+
+  constructor(private route: ActivatedRoute) {
+    this.patientId = null
+  }
 
   ngOnInit(): void {
+   this.patientId = this.route.snapshot.paramMap.get('id');
+   console.log(this.patientId);
   }
 
 }
