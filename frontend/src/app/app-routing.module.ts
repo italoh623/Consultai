@@ -4,7 +4,7 @@ import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'anamnesis-call/:id',
     component: AnamnesisCallComponent
   }
 ];
