@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpMedicalComponent } from './sign-up-medical/sign-up-medical.component';
-import { PatientComponent } from './patient/patient.component';
-import { SignUpPatientComponent } from './sign-up-patient/sign-up-patient.component';
-import { MedicalComponent } from './medical/medical.component';
-import { AnamnesisCallComponent } from './anamnesis-call/anamnesis-call.component';
-import { FeedbackComponent } from './anamnesisCall/feedback/feedback.component';
+import { SignUpMedicalComponent } from './views/sign-up-medical/sign-up-medical.component';
+import { PatientComponent } from './views/patient/patient.component';
+import { SignUpPatientComponent } from './views/sign-up-patient/sign-up-patient.component';
+import { MedicalComponent } from './views/medical/medical.component';
+import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
+import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { FeedbackComponent } from './anamnesisCall/feedback/feedback.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
