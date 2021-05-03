@@ -1,10 +1,20 @@
 import Scheduling from '../models/Scheduling'
 
+
 class SchedulingsList {
     private schedules: Scheduling[]
 
     constructor() {
-        this.schedules = []
+        this.schedules = [
+            {
+                id: 'sdhaiiusodhi',
+                patientCPF: '008',
+                medicCRM: '000',
+                horario: new Date(),
+                created_at: new Date(),
+                updated_at: new Date()
+            }
+        ]
     }
 
     create(horario: Date, patientCPF: Number, medicCRM: Number):Scheduling { 
@@ -27,7 +37,7 @@ class SchedulingsList {
         return schedule
     }
 
-    remover(id: string): Scheduling[] {
+    remove(id: string): Scheduling[] {
         const scheduleIndex = this.schedules.findIndex(schedule => schedule.id === id)
 
         if(scheduleIndex == -1) {
@@ -39,9 +49,6 @@ class SchedulingsList {
         return this.schedules
     }
 
-    getAll(): Scheduling[] {
-        return this.schedules
-    }
  
     findAllByCPF(patientCPF: Number): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.patientCPF === patientCPF)
@@ -49,11 +56,19 @@ class SchedulingsList {
         return schedule
     }
 
+<<<<<<< HEAD
+    
+    findAllByCRM(medicCRM: string): Scheduling[] {
+=======
     findAllByCRM(medicCRM: Number): Scheduling[] {
+>>>>>>> 9d3e579bc46f5e9fab12930289126b56d6787e53
         const schedule = this.schedules.filter(schedule => schedule.medicCRM === medicCRM)
-
+    
         return schedule
     }
+<<<<<<< HEAD
+          
+=======
     checkScheduling(horario: Date, patientCPF: Number, medicCRM: Number){
         if(this.findAllByCPF(patientCPF)!=null){
             return false;
@@ -65,6 +80,7 @@ class SchedulingsList {
     /* TODO: 
          talvez atualizar o horário: já consegue fazer isso com o que eu já tenho?
     */
+>>>>>>> 9d3e579bc46f5e9fab12930289126b56d6787e53
 }
 
 export default SchedulingsList

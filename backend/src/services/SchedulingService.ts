@@ -1,15 +1,15 @@
+import MedicsList from '../lists/MedicsList'
 import SchedulingList from '../lists/SchedulingsList'
+import Medic from '../models/Medic'
 
-
-/* TODO
-    * [] Checar se o médico já tem uma consulta nesse horário
-*/
 
 class SchedulingService {
     private schedulingList: SchedulingList
+    private medicsList: MedicsList
 
     constructor(schedulingList: SchedulingList) {
         this.schedulingList = schedulingList
+        this.medicsList = MedicsList.getInstance()
     }
 
     agendar(horario: Date, patientCPF: string, medicCRM:string) {
@@ -18,13 +18,15 @@ class SchedulingService {
 
         return schedule
     }
+    
+    filtrarPorEspecialidade(especialidade: string): Medic[] {
+        const medicOfSpeciality = this.medicsList.findBySpeciality(especialidade)
 
-    cancelar(id: string):void {
-        this.schedulingList.remover(id)
+        return medicOfSpeciality
     }
 
-    listar(): void {
-        this.schedulingList.getAll()
+    cancelar(id: string):void {
+        this.schedulingList.remove(id)
     }
  }
 

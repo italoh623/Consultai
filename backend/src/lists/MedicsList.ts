@@ -4,10 +4,36 @@ class MedicsList {
     private medics: Medic[]
 
     constructor() {
-        this.medics = []
+        this.medics = [
+            {
+                crm: '123',
+                name: 'Baskhara',
+                email: 'baskhara@baskhara.com',
+                especialidade: 'ginecologista',
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                crm: '456',
+                name: 'John Doe',
+                email: 'johndoe@example.com',
+                especialidade: 'psiquiatra',
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                crm: '789',
+                name: 'Juiz Da massa',
+                email: 'juiz@massa.com',
+                especialidade: 'dermatologista',
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           
+        ]
     }
 
-    create(crm: string, nome: string, especialidade: number, email: string): Medic {
+    create(crm: string, nome: string, especialidade: string, email: string): Medic {
         const existentMedic = this.findByCrm(crm)
 
         if(existentMedic) {
@@ -16,7 +42,7 @@ class MedicsList {
         
         const medic = new Medic()
 
-        Object.assign(Medic, {
+        Object.assign(medic, {
             crm,
             nome,
             especialidade,
@@ -35,12 +61,12 @@ class MedicsList {
 
         return existentMedic
     }
-
-    findByEmail(email: string): Medic {
-        const existentMedic = this.medics.find(medic => medic.email === email)
+    
+    findBySpeciality(especialidade: string): Medic[] {
+        const existentMedic = this.medics.filter(medic => medic.especialidade === especialidade)
 
         return existentMedic
-    }
+    } 
 
     getAll(): Medic[] {
         return this.medics
