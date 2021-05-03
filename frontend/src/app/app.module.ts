@@ -7,19 +7,26 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpMedicalComponent } from './views/sign-up-medical/sign-up-medical.component';
-import { PatientComponent } from './views/patient/patient.component';
+import { PatientComponent } from './views/home/patient/patient.component';
 import { SignUpPatientComponent } from './views/sign-up-patient/sign-up-patient.component';
-import { MedicalComponent } from './views/medical/medical.component';
+import { MedicalComponent } from './views/home/medical/medical.component';
 import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
 import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FileSystemComponent } from './views/file-system/file-system.component';
 
 @NgModule({
@@ -45,9 +52,19 @@ import { FileSystemComponent } from './views/file-system/file-system.component';
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
+    MatTabsModule,
+    MatListModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

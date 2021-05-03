@@ -7,9 +7,14 @@ import { Archive } from '../../../../../common/models/Archive';
   styleUrls: ['./file-system.component.scss']
 })
 export class FileSystemComponent implements OnInit {
-
+  title = 'consultai';
   constructor() { }
-
+  getFile(){
+    alert('oi')
+  }
+  submit(){
+    alert('oi')
+  }
   ngOnInit(): void {
   }
 

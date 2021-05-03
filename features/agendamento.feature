@@ -4,22 +4,21 @@ Feature: Agendamento
 
     Scenario: Paciente escolhe data disponível da consulta
         Given Eu sou a paciente "Maria"
-        And Eu estou na página de escolha da data
-        And Eu visualizo o calendário 
-        When Eu seleciono um dia no calendário que está disponível
-        Then Eu sou direcionado para a página de escolha de horários
+        And Eu estou na página de escolha da data 
+        When Eu insiro um dia na caixa de texto
+        Then Eu vejo todos os horários disponiveis
+        And Eu escolho um horário na lista
        
      Scenario: Paciente escolhe data que não possui médicos disponiveis da consulta
         Given Eu sou a paciente "Maria"
         And Eu estou na página de escolha da data
-        And Eu visualizo o calendário
-        When Eu seleciono um dia no calendário que não está disponível
+        When Eu insiro um dia na caixa de texto que não está disponível
         Then Eu recebo uma mensagem que a data que escolhi é indisponivel
        
      Scenario: Paciente escolhe especialidade
         Given Eu sou a paciente "Maria"
         And Eu estou na página de escolha da especialidade
-        And Eu visualizo a lista de especialidades
+        And Eu insiro a lista de especialidades
         And "Clinico Geral" está entre as especialidades oferecidas
         When Eu seleciono a médica "Clinico Geral"
         Then Eu sou direcionado para a página de escolha do médico
