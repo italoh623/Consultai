@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { format, isSameDay, parseISO } from 'date-fns'
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Medical } from '../../../../../common/models/Medical';
 import { ScheduleService } from './schedule.service';
 @Component({
@@ -14,12 +14,13 @@ export class ScheduleComponent implements OnInit {
   consulta: Consulta = { id: 0, horario: 0, paciente_cpf: 0, medico_crm: 0 };
   consulta_aux: Consulta = { id: 0, horario: 0, paciente_cpf: 0, medico_crm: 0 };
   public show: boolean = false;
-
+  public inputs!: FormGroup;
   //como criar um vetor de consultas?
   medicos: Medical[] = [];
 
   constructor(
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private fb:FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +38,13 @@ export class ScheduleComponent implements OnInit {
           );
         })
       })
+      this.inputs = this.fb.group({
+
+        especialidade_input: [''],
+        data_input: ['']
+
+      });
+      
   }
 
   salvar(id: Number, horario: Number, paciente_cpf: Number, medico_crm: Number): void {
@@ -57,8 +65,12 @@ export class ScheduleComponent implements OnInit {
 
 
   } 
-  filtrarEspecialidade(especialidade:string){
-    
+  //filtrarEspecialidade(especialidade:string){
+  filtrarEspecialidade(){
+    console.log(this.inputs.value.especialidade_input);
+  }
+  filtrarData(){
+    console.log(this.inputs.value.data_input);
   }
 
 

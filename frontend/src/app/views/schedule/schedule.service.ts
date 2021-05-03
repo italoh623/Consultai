@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
@@ -6,7 +7,9 @@ import { Schedule } from '../../../../../common/models/Schedule';
 import { Medical } from '../../../../../common/models/Medical';
 
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+})
 export class ScheduleService {
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
