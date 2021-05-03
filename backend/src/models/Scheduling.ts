@@ -2,8 +2,8 @@ import { v1 as uuid } from 'uuid'
 
 class Scheduling {
     id: string
-    patientCPF: Number
-    medicCRM: Number
+    patientCPF: string
+    medicCRM: string
     horario: Date
     created_at: Date
     updated_at: Date

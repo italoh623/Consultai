@@ -7,9 +7,9 @@ class SchedulingService {
     private schedulingList: SchedulingList
     private medicsList: MedicsList
 
-    constructor(schedulingList: SchedulingList) {
+    constructor(schedulingList: SchedulingList, medicsList: MedicsList) {
         this.schedulingList = schedulingList
-        this.medicsList = MedicsList.getInstance()
+        this.medicsList = medicsList
     }
 
     agendar(horario: Date, patientCPF: string, medicCRM:string) {
