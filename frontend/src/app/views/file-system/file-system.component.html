@@ -6,13 +6,18 @@
             <div class="crm">
                 <p>CRM: <input type="text" class="folder-selection" ></p>
                 <p>Descrição: <input type="text" class="folder-selection"></p>
-                <button onclick="getFile()">Selecionar arquivo <i class="fas fa-file-upload"></i></button>
+                <div class ='dropzone'>
+                    <input type="file" #fileDropRef id="fileDropRefmultiple">
+                    <h3>Arraste e solte os arquivos</h3>
+                    <h3>ou</h3>
+                    <label for="fileDropRef">Buscar arquivo</label>
+                </div>
                 <p></p>
                 <div id="See file"></div>
                 <p>Observações: </p>
                 <textarea class="folder-selection"></textarea>
                 <div class= "vertical-center" >
-                    <button onclick="alert('Hi')" class="button-submit">Enviar</button>
+                    <button (click)="submit()" class="button-submit">Enviar</button>
                 </div>
             </div>
         </div>

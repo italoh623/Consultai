@@ -10,10 +10,10 @@ export class FileSystemComponent implements OnInit {
   title = 'consultai';
   constructor() { }
   getFile(){
-    alert('oi')
+  
   }
   submit(){
-    alert('oi')
+    
   }
   ngOnInit(): void {
   }
