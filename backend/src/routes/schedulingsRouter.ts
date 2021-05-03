@@ -18,26 +18,23 @@ schedulingsRouter.post('/', (request, response) => {
     return response.json(schedule)
 })
 
-schedulingsRouter.post('/month', (request, response) => {
-    const { crm, mes, ano } = request.body
+schedulingsRouter.get('/month', (request, response) => {
+    const { crm, date } = request.query
 
     const avaiable = schedulingService.filtrarDisponibilidadePorMes({
-        medicCRM: crm,
-        mes,
-        ano
+        medicCRM: String(crm),
+        date: String(date)
     })
 
     return response.json(avaiable)
 })
 
-schedulingsRouter.post('/day', (request, response) => {
-    const { crm, dia, mes, ano } = request.body
+schedulingsRouter.get('/day', (request, response) => {
+    const { crm, date } = request.query
 
     const avaiable = schedulingService.filtrarDisponibilidadePorDia({
-        medicCRM: crm,
-        dia,
-        mes,
-        ano
+        medicCRM: String(crm),
+        date: String(date)
     })
 
     return response.json(avaiable)
