@@ -1,10 +1,20 @@
 import Scheduling from '../models/Scheduling'
 
+
 class SchedulingsList {
     private schedules: Scheduling[]
 
     constructor() {
-        this.schedules = []
+        this.schedules = [
+            {
+                id: 'sdhaiiusodhi',
+                patientCPF: '008',
+                medicCRM: '000',
+                horario: new Date(),
+                created_at: new Date(),
+                updated_at: new Date()
+            }
+        ]
     }
 
     create(horario: Date, patientCPF: string, medicCRM: string):Scheduling { 
@@ -21,7 +31,7 @@ class SchedulingsList {
         return schedule
     }
 
-    remover(id: string): Scheduling[] {
+    remove(id: string): Scheduling[] {
         const scheduleIndex = this.schedules.findIndex(schedule => schedule.id === id)
 
         if(scheduleIndex == -1) {
@@ -33,9 +43,6 @@ class SchedulingsList {
         return this.schedules
     }
 
-    getAll(): Scheduling[] {
-        return this.schedules
-    }
  
     findAllByCPF(patientCPF: string): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.patientCPF === patientCPF)
@@ -43,18 +50,13 @@ class SchedulingsList {
         return schedule
     }
 
+    
     findAllByCRM(medicCRM: string): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.medicCRM === medicCRM)
-
+    
         return schedule
     }
-
-    /* TODO: 
-          [] Antes de criar um agendamento verificar se já existe um agendamento para essa pessoa e esse médico nesse dia
-          [] ...
-
-          Pensar em mais requisitos
-    */
+          
 }
 
 export default SchedulingsList

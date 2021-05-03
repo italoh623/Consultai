@@ -14,11 +14,28 @@ medicsRouter.post('/', (request, response) => {
 })
 
 medicsRouter.get('/', (request, response) => {
-    return response.send()
+    const medics = medicsList.getAll()
+
+    return response.json(medics)
 })
 
+medicsRouter.get('/:crm', (request, response) => {
+    const { crm } = request.params
+    const medic = medicsList.findByCrm(crm)
+
+    return response.json(medic)
+})
+
+
 medicsRouter.delete('/:crm', (request, response) => {
-    return response.send()
+    try {
+        const { crm } = request.params
+        const medic = medicsList.delete(crm)
+
+        return response.json(medic)
+    } catch(err) {
+        return response.status(404).json({ error: 'Cannot delete a non-existing medic' })
+    }
 })
 
 export default medicsRouter

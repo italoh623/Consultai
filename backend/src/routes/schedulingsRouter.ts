@@ -15,14 +15,20 @@ schedulingsRouter.post('/', (request, response) => {
     return response.json(schedule)
 })
 
-schedulingsRouter.get('/', (request, response) => {
-    return schedulingService.listar()
+schedulingsRouter.get('/:especialidade', (request, response) => {
+    const { especialidade } = request.params
+    
+    const schedule = schedulingService.filtrarPorEspecialidade(especialidade)
+
+    return response.json(schedule)
 })
 
 schedulingsRouter.delete('/:id', (request, response) => {
     const { id } = request.params
 
-    return schedulingService.cancelar(id)
+    schedulingService.cancelar(id)
+
+    return response.send()
 })
 
 export default schedulingsRouter

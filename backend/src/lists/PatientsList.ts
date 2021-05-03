@@ -4,7 +4,48 @@ class PatientsList {
     private patients: Patient[]
 
     constructor() {
-        this.patients = []
+        this.patients = [
+           {
+                cpf: '123',
+                name: 'Cadu',
+                email: 'cadu@cadu.com',
+                idade: 24,
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                cpf: '007',
+                name: 'Grisi',
+                email: 'grisi@grisi.com',
+                idade: 23,
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                cpf: '456',
+                name: 'Italo',
+                email: 'italo@italo.com',
+                idade: 21,
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                cpf: '789',
+                name: 'luisa',
+                email: 'luisa@luisa.com',
+                idade: 20,
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+           {
+                cpf: '222',
+                name: 'rafa',
+                email: 'rafa@rafa.com',
+                idade: 23,
+                created_at: new Date(),
+                updated_at: new Date(),
+           },
+        ]
     }
 
     create(cpf: string, nome: string, idade: number, email: string): Patient {

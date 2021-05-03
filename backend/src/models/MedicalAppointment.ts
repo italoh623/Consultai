@@ -8,6 +8,7 @@ class MedicalAppointment {
 
     constructor() {
         this.id = uuid()
+        this.onCall = false
     }
 }
 
