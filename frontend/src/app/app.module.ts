@@ -19,6 +19,7 @@ import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
+import { HttpClientModule } from '@angular/common/http';
 // import { FileSystemComponent } from './file-system/file-system.component';
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AppointmentComponent } from './views/appointment/appointment.component'
     MatDividerModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
