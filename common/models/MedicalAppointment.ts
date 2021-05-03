@@ -1,8 +1,8 @@
 export class MedicalAppointment {
-  id: string
-  url: string
-  onCall: boolean
-  agendamentoId: string
+  id: string;
+  url: string;
+  onCall: boolean;
+  agendamentoId: string;
 
   constructor(id: string, url: string, onCall: boolean, agendamentoId: string) {
     this.id = id;
