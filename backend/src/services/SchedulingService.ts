@@ -121,7 +121,3 @@ class SchedulingService {
  }
 
 export default SchedulingService
-
-function toISOString() {
-    throw new Error('Function not implemented.')
-}
