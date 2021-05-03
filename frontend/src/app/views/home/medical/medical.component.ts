@@ -8,6 +8,7 @@ import { ptBR } from 'date-fns/locale'
 import { Patient } from '../../../../../../common/models/Patient';
 import { Schedule } from '../../../../../../common/models/Schedule';
 import { MedicalService } from './medical.service';
+import { Medical } from '../../../../../../common/models/Medical'
 
 @Component({
   selector: 'app-medical',
@@ -23,6 +24,9 @@ export class MedicalComponent implements OnInit {
 
   patients: Patient[] = [];
 
+  crm: string = '123';
+  medical: any;
+
   constructor(
     private fb: FormBuilder,
     private medicalService: MedicalService,
@@ -34,15 +38,29 @@ export class MedicalComponent implements OnInit {
       scheduleDate: [Date.now()]
     })
 
-    this.medicalService.listSchedule("123")
+    this.medicalService.getMedical(this.crm)
+      .subscribe(data => {
+        this.medical = new Medical(
+          data.crm,
+          data.name,
+          data.email,
+          data.especialidade,
+          data.horarios,
+          parseISO(String(data.created_at)),
+          parseISO(String(data.updated_at))
+        )
+        console.log(this.medical)
+      });
+
+    this.medicalService.listSchedule(this.crm)
       .subscribe(data => {
         this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
           return new Schedule(
-            id, 
-            patientCPF, 
-            medicCRM, 
-            parseISO(String(horario)), 
-            parseISO(String(created_at)), 
+            id,
+            patientCPF,
+            medicCRM,
+            parseISO(String(horario)),
+            parseISO(String(created_at)),
             parseISO(String(updated_at))
           );
         })
@@ -50,15 +68,15 @@ export class MedicalComponent implements OnInit {
         this.schedules = [...this.schedulesData]
       });
 
-    this.medicalService.listPatients("123")
+    this.medicalService.listPatients(this.crm)
       .subscribe(data => {
         this.patients = data.map(({ cpf, name, email, idade, created_at, updated_at }) => {
           return new Patient(
-            cpf, 
-            name, 
-            email, 
+            cpf,
+            name,
+            email,
             idade,
-            parseISO(String(created_at)), 
+            parseISO(String(created_at)),
             parseISO(String(updated_at))
           );
         })

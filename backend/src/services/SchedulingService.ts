@@ -1,8 +1,8 @@
 import MedicsList from '../lists/MedicsList'
-// import PatientsList from '../lists/PatientsList'
 import SchedulingList from '../lists/SchedulingsList'
+import PatientsList from'../lists/PatientsList'
 import Medic from '../models/Medic'
-// import Patient from '../models/Patient'
+import Patient from '../models/Patient'
 import { format, getDaysInMonth, getDate, getHours, isAfter, parseISO } from 'date-fns'
 // import Scheduling from '../models/Scheduling'
 
@@ -25,10 +25,13 @@ type ResponseMonth = Array<{
 class SchedulingService {
     private schedulingList: SchedulingList
     private medicsList: MedicsList
+    private patientsList: PatientsList
 
-    constructor(schedulingList: SchedulingList, medicsList: MedicsList) {
+
+    constructor(schedulingList: SchedulingList, medicsList: MedicsList, patientsList: PatientsList) {
         this.schedulingList = schedulingList
         this.medicsList = medicsList
+        this.patientsList = patientsList
     }
 
     agendar(horario: Date, patientCPF: string, medicCRM:string) {
