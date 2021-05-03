@@ -26,4 +26,5 @@ schedulingsRouter.delete('/:id', (request, response) => {
     return response.send()
 })
 
+
 export default schedulingsRouter
