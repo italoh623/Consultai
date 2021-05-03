@@ -1,11 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppointmentComponent } from './appointment/appointment.component';
-import { RecordComponent } from './record/record.component';
+
+import { RecordComponent } from './views/record/record.component';
+import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 const routes: Routes = [
-  { path: 'record/:id', component: RecordComponent },
-  { path: 'appointment', component: AppointmentComponent }
+  { 
+    path: 'record/:id', 
+    component: RecordComponent 
+  },
+  {
+    path: 'anamnesis-call/:id',
+    component: AnamnesisCallComponent
+  },
+  { 
+    path: 'schedule', 
+    component: ScheduleComponent 
+  }
 ];
 
 @NgModule({
