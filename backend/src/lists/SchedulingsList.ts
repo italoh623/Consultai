@@ -1,16 +1,35 @@
 import Scheduling from '../models/Scheduling'
 
-
+const date1 = new Date("Mon, 3 May 2021 13:30:00");
+const date2 = new Date("Mon, 3 May 2021 14:00:00");
+const date3 = new Date("Mon, 3 May 2021 14:30:00");
+const date4 = new Date("Mon, 3 May 2021 15:00:00");
 class SchedulingsList {
     private schedules: Scheduling[]
 
     constructor() {
         this.schedules = [
             {
-                id: 'sdhaiiusodhi',
-                patientCPF: '007',
+                id: '1',
+                patientCPF: '123',
                 medicCRM: '123',
-                horario: new Date(),
+                horario: date1,
+                created_at: new Date(),
+                updated_at: new Date()
+            },
+            {
+                id: '3',
+                patientCPF: '007',
+                medicCRM: '789',
+                horario: date3,
+                created_at: new Date(),
+                updated_at: new Date()
+            },
+            {
+                id: '4',
+                patientCPF: '456',
+                medicCRM: '123',
+                horario: date4,
                 created_at: new Date(),
                 updated_at: new Date()
             }

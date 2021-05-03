@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleComponent implements OnInit{
   title = 'consultai';
-  consulta:Consulta={id:1,horario:2,paciente_cpf:111,medico_crm:222};
+  consulta:Consulta={id:0,horario:0,paciente_cpf:0,medico_crm:0};
  //como criar um vetor de consultas?
   consultas:Consulta[]=[];
   constructor() {
@@ -28,13 +28,11 @@ export class ScheduleComponent implements OnInit{
       this.consulta.paciente_cpf=paciente_cpf;
       this.consulta.medico_crm=medico_crm;
       this.consultas.push(this.consulta);
-      alert("Consulta:"+this.consultas[0].id+" horário:"+this.consultas[0].horario+"h"+"Medico:"+this.consultas[0].horario+"Paciente:" + this.consultas[0].paciente_cpf); 
+      alert("Consulta:"+this.consulta.id+" horário:"+this.consulta.horario+"h"+"Medico:"+this.consulta.horario+"Paciente:" + this.consulta.paciente_cpf); 
     }
-    
+
+
   } 
-  mostrar(){
-    alert("Consulta:"+this.consultas[0].id+" horário:"+this.consultas[0].horario+"h"); 
-  }
 
 }
 
