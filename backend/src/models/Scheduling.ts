@@ -8,8 +8,19 @@ class Scheduling {
     created_at: Date
     updated_at: Date
 
-    constructor() {
+    constructor(
+        patientCPF: string,
+        medicCRM: string,
+        horario: Date,
+        created_at: Date,
+        updated_at: Date
+    ) {
         this.id = uuid()
+        this.patientCPF = patientCPF
+        this.medicCRM = medicCRM
+        this.horario = horario
+        this.created_at = created_at
+        this.updated_at = updated_at
     }
 }
 
