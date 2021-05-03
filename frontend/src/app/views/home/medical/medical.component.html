@@ -1,0 +1,48 @@
+<mat-tab-group mat-align-tabs="center" color="primary">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">badge</mat-icon>
+      Meus Pacientes
+    </ng-template>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">Item 1</mat-list-item>
+      <mat-list-item role="listitem">Item 2</mat-list-item>
+      <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">calendar_today</mat-icon>
+      Minhas Consultas
+    </ng-template>
+
+    <form [formGroup]="scheduleForm" class="dateSelector">
+      <mat-form-field appearance="fill">
+        <mat-label>Escolha uma data</mat-label>
+        <input 
+          (dateChange)="updateScheduleData()"
+          matInput 
+          formControlName="scheduleDate" 
+          name="scheduleDate" 
+          [matDatepicker]="picker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+    
+
+    <div class="listar">
+      <button mat-card class="card" *ngFor="let schedule of schedules">
+        <header>
+          <mat-card-title>{{ schedule.patientCPF }}</mat-card-title>
+          <mat-card-subtitle>{{ formatDate(schedule.horario) }}</mat-card-subtitle>
+        </header>
+
+        <mat-card-content>Consulta médica</mat-card-content>
+      </button>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
