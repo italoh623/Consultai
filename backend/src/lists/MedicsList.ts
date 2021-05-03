@@ -12,6 +12,12 @@ class MedicsList {
                 especialidade: 'ginecologista',
                 created_at: new Date(),
                 updated_at: new Date(),
+                horarios: [
+                    { disponivel: true, horario: new Date() },
+                    { disponivel: false, horario: new Date() },
+                    { disponivel: true, horario: new Date() }
+                ]
+
            },
            {
                 crm: '456',
@@ -20,6 +26,11 @@ class MedicsList {
                 especialidade: 'psiquiatra',
                 created_at: new Date(),
                 updated_at: new Date(),
+                horarios: [
+                    { disponivel: true, horario: new Date() },
+                    { disponivel: false, horario: new Date() },
+                    { disponivel: true, horario: new Date() }
+                ]
            },
            {
                 crm: '789',
@@ -28,6 +39,10 @@ class MedicsList {
                 especialidade: 'dermatologista',
                 created_at: new Date(),
                 updated_at: new Date(),
+                horarios: [{
+                    disponivel: true,
+                    horario: new Date()
+                }]
            },
            
         ]

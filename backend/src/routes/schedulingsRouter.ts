@@ -8,21 +8,12 @@ const schedulingsRouter = Router()
 
 const schedulingsList = new SchedulingsList()
 const medicsList = new MedicsList()
-const patientsList = new PatientsList()
-const schedulingService = new SchedulingService(schedulingsList, medicsList, patientsList)
+const schedulingService = new SchedulingService(schedulingsList, medicsList)
 
 schedulingsRouter.post('/', (request, response) => {
     const { horario, patientCPF, medicCRM } = request.body
 
     const schedule = schedulingService.agendar(horario, patientCPF, medicCRM)
-
-    return response.json(schedule)
-})
-
-schedulingsRouter.get('/:especialidade', (request, response) => {
-    const { especialidade } = request.params
-    
-    const schedule = schedulingService.filtrarPorEspecialidade(especialidade)
 
     return response.json(schedule)
 })
@@ -35,11 +26,5 @@ schedulingsRouter.delete('/:id', (request, response) => {
     return response.send()
 })
 
-schedulingsRouter.get('/patients/:crm', (request, response) => {
-    const { crm } = request.params
-    const res = schedulingService.getPatientsByCRM(crm)
-
-    return response.json(res)
-})
 
 export default schedulingsRouter
