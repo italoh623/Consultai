@@ -36,6 +36,12 @@ class MedicsList {
         return existentMedic
     }
 
+    findByEmail(email: string): Medic {
+        const existentMedic = this.medics.find(medic => medic.email === email)
+
+        return existentMedic
+    }
+
     getAll(): Medic[] {
         return this.medics
     }
