@@ -1,23 +1,27 @@
 import { Router } from 'express'
-import Feedback from '../models/Feedback'
+import FeedbacksList from '../lists/FeedbacksList'
+// import MedicalAppointmentsList from '../lists/MedicalAppointmentsList'
+// import SchedulingsList from '../lists/SchedulingsList'
+import FeedbackService from '../services/FeedbackService'
 
 const feedbacksRouter = Router()
+const feedbacksList = new FeedbacksList()
 
-const feedbacks = []
 
-feedbacksRouter.post('/', (request, response) => {
-    const { consultaId, descricao } = request.body
+feedbacksRouter.post('/', async(request, response) => {
+    // const { consultaId } = request.params => precisa pegar o email do médico, discutir como fazer.
+    
+    const { rating, descricao } = request.body
 
-    const feedback = new Feedback()
+    const sendFeedbackService = new FeedbackService(feedbacksList, )
 
-    Object.assign(feedback, {
-        consultaId,
+    await sendFeedbackService.execute({   
+        email: 'junior@junior.com',
+        rating,
         descricao
     })
 
-    feedbacks.push(feedback)
-
-    return response.json(feedback)
+    return response.json({ status: 'Email enviado com sucesso' })
 })
 
 feedbacksRouter.get('/', (request, response) => {

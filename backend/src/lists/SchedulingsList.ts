@@ -77,6 +77,12 @@ class SchedulingsList {
     
         return schedule
     }
+
+    findById(id: string): Scheduling {
+        const schedule = this.schedules.find(schedule => schedule.id === id)
+
+        return schedule
+    }
           
 }
 
