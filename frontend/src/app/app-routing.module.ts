@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RecordComponent } from './views/record/record.component';
 import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
-import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleComponent } from './views/schedule/schedule.component';
+import { FileSystemComponent } from './file-system/file-system.component';
 
 const routes: Routes = [
   { 
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'anamnesis-call/:id',
     component: AnamnesisCallComponent
+  },
+  {
+    path: 'files',
+    component: FileSystemComponent
   },
   { 
     path: 'schedule', 
