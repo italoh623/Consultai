@@ -1,8 +1,8 @@
 import Scheduling from '../models/Scheduling'
 
-const date1 = new Date("Mon, 3 May 2021 13:30:00");
-const date2 = new Date("Mon, 3 May 2021 14:00:00");
-const date3 = new Date("Mon, 3 May 2021 14:30:00");
+const date1 = new Date("Mon, 3 Oct 2021 13:30:00");
+// const date2 = new Date("Mon, 3 May 2021 14:00:00");
+const date3 = new Date("Mon, 3 Nov 2021 14:30:00");
 const date4 = new Date("Mon, 3 May 2021 15:00:00");
 class SchedulingsList {
     private schedules: Scheduling[]
@@ -38,11 +38,7 @@ class SchedulingsList {
 
     create(horario: Date, patientCPF: string, medicCRM: string):Scheduling { 
         const schedule = new Scheduling()
-        const existentAppointment= this.findAllByCPF(patientCPF)
-        const medicosDisponiveis=this.findAllByCRM(medicCRM)
-        if(existentAppointment) {
-            throw new Error('Patient already made an appointment!')
-        }
+        
         Object.assign(schedule, {
             horario,
             patientCPF,
