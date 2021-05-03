@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { format, isSameDay, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
@@ -7,7 +8,7 @@ import { ptBR } from 'date-fns/locale'
 import { Patient } from '../../../../../../common/models/Patient';
 import { Schedule } from '../../../../../../common/models/Schedule';
 import { MedicalService } from './medical.service';
-import { Medic } from '../../../../../../common/models/Medic'
+import { Medical } from '../../../../../../common/models/Medical'
 
 @Component({
   selector: 'app-medical',
@@ -24,41 +25,42 @@ export class MedicalComponent implements OnInit {
   patients: Patient[] = [];
 
   crm: string = '123';
-  medic: any;
+  medical: any;
 
   constructor(
     private fb: FormBuilder,
-    private medicalService: MedicalService
-    ) { }
-    ngOnInit(): void {
-      this.scheduleForm = this.fb.group({
-        scheduleDate: [Date.now()]
-      })
-      
-      this.medicalService.getMedic(this.crm)
-        .subscribe(data => {
-          this.medic = new Medic(
-                        data.crm,
-                        data.name,
-                        data.email,
-                        data.especialidade,
-                        data.horarios,
-                        parseISO(String(data.created_at)),
-                        parseISO(String(data.updated_at))
-                      )
-          console.log(this.medic)
-        });
-      
+    private medicalService: MedicalService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.scheduleForm = this.fb.group({
+      scheduleDate: [Date.now()]
+    })
+
+    this.medicalService.getMedical(this.crm)
+      .subscribe(data => {
+        this.medical = new Medical(
+          data.crm,
+          data.name,
+          data.email,
+          data.especialidade,
+          data.horarios,
+          parseISO(String(data.created_at)),
+          parseISO(String(data.updated_at))
+        )
+        console.log(this.medical)
+      });
+
     this.medicalService.listSchedule(this.crm)
       .subscribe(data => {
-        console.log(data)
         this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
           return new Schedule(
-            id, 
-            patientCPF, 
-            medicCRM, 
-            parseISO(String(horario)), 
-            parseISO(String(created_at)), 
+            id,
+            patientCPF,
+            medicCRM,
+            parseISO(String(horario)),
+            parseISO(String(created_at)),
             parseISO(String(updated_at))
           );
         })
@@ -68,14 +70,13 @@ export class MedicalComponent implements OnInit {
 
     this.medicalService.listPatients(this.crm)
       .subscribe(data => {
-        console.log(data)
         this.patients = data.map(({ cpf, name, email, idade, created_at, updated_at }) => {
           return new Patient(
-            cpf, 
-            name, 
-            email, 
+            cpf,
+            name,
+            email,
             idade,
-            parseISO(String(created_at)), 
+            parseISO(String(created_at)),
             parseISO(String(updated_at))
           );
         })
@@ -92,6 +93,11 @@ export class MedicalComponent implements OnInit {
     this.schedules = this.schedulesData.filter(
       schedule => isSameDay(schedule.horario, date)
     )
+  }
+
+  navigateToMedicalAppointment(scheduleId: string) {
+    console.log(scheduleId)
+    this.router.navigateByUrl(`/`)
   }
 
 }

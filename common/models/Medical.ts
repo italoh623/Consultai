@@ -1,6 +1,6 @@
 import Horario from "./Horario"
 
-export class Medic {
+export class Medical {
     crm: string
     name: string
     especialidade: string
