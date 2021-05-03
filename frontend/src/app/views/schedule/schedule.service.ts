@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 import { Schedule } from '../../../../../common/models/Schedule';
-import { Medic } from '../../../../../src/models/Medic';
+import { Medic } from '../../../../../backend/src/models/Medic';
 
 
 @Injectable()
@@ -54,5 +54,6 @@ export class ScheduleService {
         retry(2)
       );
   }
+
 
 }

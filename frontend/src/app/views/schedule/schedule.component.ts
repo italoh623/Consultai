@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Medic } from '../../../../../../src/models/Medic';
-
+import { Medic } from '../../../../../backend/src/models/Medic';
+import { format, isSameDay, parseISO } from 'date-fns'
 import { ScheduleService } from './schedule.service';
 @Component({
   selector: 'app-root',
@@ -14,9 +14,6 @@ export class ScheduleComponent implements OnInit{
   consulta_aux:Consulta={id:0,horario:0,paciente_cpf:0,medico_crm:0};
   public show:boolean = false;
 
-  dadosMedicos: Medic[] = [
-    new Medic("1","João","Cardiologista","joao@cardio.com",[]),
-  ]
  //como criar um vetor de consultas?
   medicos:Medic[]=[];
 
@@ -26,10 +23,18 @@ export class ScheduleComponent implements OnInit{
    }
 
   ngOnInit(): void {
-    this.scheduleService.show("")
+    this.scheduleService.getespecialidade("cardiologista")
     .subscribe(data =>{
-      this.dadosMedicos=data.map(({ crm, name,especialidade,email,horarios[],created_at,updated_at})=>{
-        return new Medic(crm,name,especialidade,email,horarios[],parseISO(String(created_at)),parseISO(String(updated_at)));
+      this.medicos=data.map(({ crm, name,especialidade,email,horarios,created_at,updated_at})=>{
+        return new Medic(
+          crm,
+          name,
+          especialidade,
+          email,
+          horarios,
+          parseISO(String(created_at)),
+          parseISO(String(updated_at))
+          );
       })
     })
   }
@@ -52,6 +57,9 @@ export class ScheduleComponent implements OnInit{
 
 
   } 
+  filtrarEspecialidade(especialidade:string){
+    
+  }
 
 
 }
