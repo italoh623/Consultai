@@ -1,11 +1,13 @@
 import { Router } from 'express'
+import MedicsList from '../lists/MedicsList'
 import SchedulingsList from '../lists/SchedulingsList'
 import SchedulingService from '../services/SchedulingService'
 
 const schedulingsRouter = Router()
 
 const schedulingsList = new SchedulingsList()
-const schedulingService = new SchedulingService(schedulingsList)
+const medicsList = new MedicsList()
+const schedulingService = new SchedulingService(schedulingsList, medicsList)
 
 schedulingsRouter.post('/', (request, response) => {
     const { horario, patientCPF, medicCRM } = request.body
