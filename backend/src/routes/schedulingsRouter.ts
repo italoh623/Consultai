@@ -8,7 +8,8 @@ const schedulingsRouter = Router()
 
 const schedulingsList = new SchedulingsList()
 const medicsList = new MedicsList()
-const schedulingService = new SchedulingService(schedulingsList, medicsList)
+const patientsList = new PatientsList()
+const schedulingService = new SchedulingService(schedulingsList, medicsList,patientsList)
 
 schedulingsRouter.post('/', (request, response) => {
     const { horario, patientCPF, medicCRM } = request.body
