@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RecordComponent } from './views/record/record.component';
 import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
-import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleComponent } from './views/schedule/schedule.component';
 
 const routes: Routes = [
   { 
