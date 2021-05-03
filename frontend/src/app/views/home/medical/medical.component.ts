@@ -7,6 +7,7 @@ import { ptBR } from 'date-fns/locale'
 import { Patient } from '../../../../../../common/models/Patient';
 import { Schedule } from '../../../../../../common/models/Schedule';
 import { MedicalService } from './medical.service';
+import { Medic } from '../../../../../../common/models/Medic'
 
 @Component({
   selector: 'app-medical',
@@ -22,17 +23,33 @@ export class MedicalComponent implements OnInit {
 
   patients: Patient[] = [];
 
+  crm: string = '123';
+  medic: any;
+
   constructor(
     private fb: FormBuilder,
     private medicalService: MedicalService
-  ) { }
-
-  ngOnInit(): void {
-    this.scheduleForm = this.fb.group({
-      scheduleDate: [Date.now()]
-    })
-
-    this.medicalService.listSchedule("123")
+    ) { }
+    ngOnInit(): void {
+      this.scheduleForm = this.fb.group({
+        scheduleDate: [Date.now()]
+      })
+      
+      this.medicalService.getMedic(this.crm)
+        .subscribe(data => {
+          this.medic = new Medic(
+                        data.crm,
+                        data.name,
+                        data.email,
+                        data.especialidade,
+                        data.horarios,
+                        parseISO(String(data.created_at)),
+                        parseISO(String(data.updated_at))
+                      )
+          console.log(this.medic)
+        });
+      
+    this.medicalService.listSchedule(this.crm)
       .subscribe(data => {
         console.log(data)
         this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
@@ -49,7 +66,7 @@ export class MedicalComponent implements OnInit {
         this.schedules = [...this.schedulesData]
       });
 
-    this.medicalService.listPatients("123")
+    this.medicalService.listPatients(this.crm)
       .subscribe(data => {
         console.log(data)
         this.patients = data.map(({ cpf, name, email, idade, created_at, updated_at }) => {
