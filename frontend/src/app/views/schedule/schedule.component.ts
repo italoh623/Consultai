@@ -1,38 +1,58 @@
 import { Component, OnInit } from '@angular/core';
+import { Medic } from '../../../../../../src/models/Medic';
 
+import { ScheduleService } from './schedule.service';
 @Component({
   selector: 'app-root',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
+
 export class ScheduleComponent implements OnInit{
   title = 'consultai';
   consulta:Consulta={id:0,horario:0,paciente_cpf:0,medico_crm:0};
- //como criar um vetor de consultas?
-  consultas:Consulta[]=[];
-  constructor() {
+  consulta_aux:Consulta={id:0,horario:0,paciente_cpf:0,medico_crm:0};
+  public show:boolean = false;
 
+  dadosMedicos: Medic[] = [
+    new Medic("1","João","Cardiologista","joao@cardio.com",[]),
+  ]
+ //como criar um vetor de consultas?
+  medicos:Medic[]=[];
+
+
+  constructor(private scheduleService:ScheduleService) {
+    
    }
 
   ngOnInit(): void {
- 
+    this.scheduleService.show("")
+    .subscribe(data =>{
+      this.dadosMedicos=data.map(({ crm, name,especialidade,email,horarios[],created_at,updated_at})=>{
+        return new Medic(crm,name,especialidade,email,horarios[],parseISO(String(created_at)),parseISO(String(updated_at)));
+      })
+    })
   }
 
   salvar(id:Number,horario: Number,paciente_cpf:Number, medico_crm:Number): void {  
     if(this.consulta.paciente_cpf==paciente_cpf){
-      alert("A consulta já foi marcada para:"+this.consultas[0].horario+"h"); 
+      this.consulta_aux.id=id;
+      this.consulta_aux.horario=horario;
+      this.consulta_aux.paciente_cpf=paciente_cpf;
+      this.consulta_aux.medico_crm=medico_crm;
+      this.show=true;
     }
     else{
       this.consulta.id=id;
       this.consulta.horario=horario;
       this.consulta.paciente_cpf=paciente_cpf;
       this.consulta.medico_crm=medico_crm;
-      this.consultas.push(this.consulta);
-      alert("Consulta:"+this.consulta.id+" horário:"+this.consulta.horario+"h"+"Medico:"+this.consulta.horario+"Paciente:" + this.consulta.paciente_cpf); 
+      alert("Consulta marcada para às "+this.consulta.horario+"h"+"Com Dr:"+"Nome do médico"); 
     }
 
 
   } 
+
 
 }
 
