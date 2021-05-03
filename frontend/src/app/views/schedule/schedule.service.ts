@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
-
 import { Schedule } from '../../../../../common/models/Schedule';
+import { Medic } from '../../../../../src/models/Medic';
 
 
 @Injectable()
@@ -44,6 +44,12 @@ export class ScheduleService {
 
   index(schedule: Schedule): Observable<Schedule[]> {
     return this.http.get<Schedule[]>(this.url + "/schedule")
+      .pipe(
+        retry(2)
+      );
+  }
+  getespecialidade(especialidade: string): Observable<Medic[]> {
+    return this.http.get<Medic[]>(this.url + `/schedule/${especialidade}`,)
       .pipe(
         retry(2)
       );

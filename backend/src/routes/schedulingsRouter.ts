@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import MedicsList from '../lists/MedicsList'
-import PatientsList from '../lists/PatientsList'
+// import PatientsList from '../lists/PatientsList'
 import SchedulingsList from '../lists/SchedulingsList'
 import SchedulingService from '../services/SchedulingService'
 
