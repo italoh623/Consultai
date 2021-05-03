@@ -59,7 +59,7 @@ medicsRouter.get('/espec/:especialidade', (request, response) => {
     return response.json(schedule)
 })
 
-medicsRouter.get('/appointments/:crm', (request, response) => {
+medicsRouter.get('/schedules/:crm', (request, response) => {
     const { crm } = request.params
 
     const consultas = medicsService.getSchedules(crm)

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { format, isSameDay } from 'date-fns'
+import { format, isSameDay, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 import { Schedule } from '../../../../../../common/models/Schedule';
+import { MedicalService } from './medical.service';
 
 @Component({
   selector: 'app-medical',
@@ -27,7 +28,8 @@ export class MedicalComponent implements OnInit {
   schedules: Schedule[] = [];
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private medicalService: MedicalService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +37,15 @@ export class MedicalComponent implements OnInit {
       scheduleDate: [Date.now()]
     })
 
-    this.schedules = [...this.schedulesData]
+    this.medicalService.show("123")
+      .subscribe(data => {
+        console.log(data)
+        this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at}) => {
+          return new Schedule(id, patientCPF, medicCRM, parseISO(String(horario)), parseISO(String(created_at)), parseISO(String(updated_at)));
+        })
+
+        this.schedules = [...this.schedulesData]
+      });
   }
 
   formatDate(date: Date): string {
