@@ -35,3 +35,29 @@
   }
 }
 
+.listPatient {
+  display: flex;
+  flex-direction: row;
+  margin: 0 1rem;
+
+  .card {
+    // display: flex;
+    // flex-direction: row;
+  
+    // width: 100%;
+    min-width: 300px;
+    padding: 1rem 0.5rem;
+    margin: 1rem;
+
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      margin-bottom: 1rem;
+    }
+  }
+}
+

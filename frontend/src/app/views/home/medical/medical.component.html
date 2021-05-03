@@ -5,11 +5,16 @@
       Meus Pacientes
     </ng-template>
 
-    <mat-list role="list">
-      <mat-list-item role="listitem">Item 1</mat-list-item>
-      <mat-list-item role="listitem">Item 2</mat-list-item>
-      <mat-list-item role="listitem">Item 3</mat-list-item>
-    </mat-list>
+    <div class="listPatient">
+      <button mat-card class="card" *ngFor="let patient of patients">
+        <header>
+          <mat-card-title>{{ patient.name }}</mat-card-title>
+          <mat-card-subtitle>{{ patient.idade }} Anos</mat-card-subtitle>
+        </header>
+
+        <mat-card-content>{{ patient.email }}</mat-card-content>
+      </button>
+    </div>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
