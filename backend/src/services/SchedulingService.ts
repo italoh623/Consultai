@@ -26,6 +26,11 @@ class SchedulingService {
 
         return medicOfSpeciality
     }
+    filtrarDisponibilidadeMedico(medicCRM:string): Medic[] {
+        const medicDisponibility= this.medicsList.findBySpeciality(medicCRM)
+
+        return medicDisponibility
+    }
 
     cancelar(id: string):void {
         this.schedulingList.remove(id)

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,7 @@ import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
-// import { FileSystemComponent } from './file-system/file-system.component';
+import { FileSystemComponent } from './views/file-system/file-system.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AppointmentComponent } from './views/appointment/appointment.component'
     FeedbackComponent,
     RecordComponent,
     AppointmentComponent,
-    // FileSystemComponent
+    FileSystemComponent
   ],
   imports: [
     BrowserModule,
@@ -57,11 +58,13 @@ import { AppointmentComponent } from './views/appointment/appointment.component'
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule
   ],
   providers: [
     MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

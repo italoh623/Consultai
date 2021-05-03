@@ -6,7 +6,7 @@ import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.co
 import { ScheduleComponent } from './views/schedule/schedule.component';
 import { MedicalComponent } from './views/home/medical/medical.component';
 import { PatientComponent } from './views/home/patient/patient.component';
-// import { FileSystemComponent } from './file-system/file-system.component';
+import { FileSystemComponent } from './views/file-system/file-system.component';
 
 const routes: Routes = [
   {
@@ -25,10 +25,10 @@ const routes: Routes = [
     path: 'anamnesis-call/:id',
     component: AnamnesisCallComponent
   },
-  // {
-  //   path: 'files',
-  //   component: FileSystemComponent
-  // },
+  {
+    path: 'files',
+    component: FileSystemComponent
+  },
   { 
     path: 'schedule', 
     component: ScheduleComponent 
