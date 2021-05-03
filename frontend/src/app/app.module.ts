@@ -19,6 +19,8 @@ import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
+import { FileSystemComponent } from './file-system/file-system.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { AppointmentComponent } from './views/appointment/appointment.component'
     AnamnesisCallComponent,
     FeedbackComponent,
     RecordComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    FileSystemComponent
   ],
   imports: [
     BrowserModule,
