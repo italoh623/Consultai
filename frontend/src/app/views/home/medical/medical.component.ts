@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { format, isSameDay, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
@@ -24,7 +25,8 @@ export class MedicalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private medicalService: MedicalService
+    private medicalService: MedicalService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,6 @@ export class MedicalComponent implements OnInit {
 
     this.medicalService.listSchedule("123")
       .subscribe(data => {
-        console.log(data)
         this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
           return new Schedule(
             id, 
@@ -51,7 +52,6 @@ export class MedicalComponent implements OnInit {
 
     this.medicalService.listPatients("123")
       .subscribe(data => {
-        console.log(data)
         this.patients = data.map(({ cpf, name, email, idade, created_at, updated_at }) => {
           return new Patient(
             cpf, 
@@ -75,6 +75,11 @@ export class MedicalComponent implements OnInit {
     this.schedules = this.schedulesData.filter(
       schedule => isSameDay(schedule.horario, date)
     )
+  }
+
+  navigateToMedicalAppointment(scheduleId: string) {
+    console.log(scheduleId)
+    this.router.navigateByUrl(`/`)
   }
 
 }
