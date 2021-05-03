@@ -5,6 +5,7 @@ import { retry } from 'rxjs/operators';
 
 import { Schedule } from '../../../../../../common/models/Schedule';
 import { Patient } from '../../../../../../common/models/Patient';
+import { Medical } from '../../../../../../common/models/Medical';
 
 
 @Injectable({
@@ -29,6 +30,13 @@ export class MedicalService {
       .pipe(
         retry(2)
       );
+  }
+
+  getMedical(crm: string): Observable<Medical> {
+    return this.http.get<Medical>(this.url + `/medics/${crm}`)
+      .pipe(
+        retry(2)
+      )
   }
 
 }
