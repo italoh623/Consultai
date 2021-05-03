@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { format, isSameDay, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
+import { Patient } from '../../../../../../common/models/Patient';
 import { Schedule } from '../../../../../../common/models/Schedule';
 import { MedicalService } from './medical.service';
 
@@ -16,16 +17,10 @@ export class MedicalComponent implements OnInit {
 
   public scheduleForm: FormGroup;
 
-  schedulesData: Schedule[] = [
-    new Schedule("1", "123", "45123", new Date("Mon, 5 May 2021 13:30:00"), new Date(), new Date()),
-    new Schedule("1", "123", "45123", new Date("Mon, 3 May 2021 12:30:00"), new Date(), new Date()),
-    new Schedule("1", "123", "45123", new Date("Mon, 3 May 2021 13:30:00"), new Date(), new Date()),
-    new Schedule("1", "123", "45123", new Date("Mon, 6 May 2021 15:00:00"), new Date(), new Date()),
-    new Schedule("1", "123", "45123", new Date("Mon, 30 May 2021 17:30:00"), new Date(), new Date()),
-    new Schedule("1", "123", "45123", new Date("Mon, 12 May 2021 21:30:00"), new Date(), new Date()),
-  ];
-
+  schedulesData: Schedule[] = [];
   schedules: Schedule[] = [];
+
+  patients: Patient[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -37,14 +32,36 @@ export class MedicalComponent implements OnInit {
       scheduleDate: [Date.now()]
     })
 
-    this.medicalService.show("123")
+    this.medicalService.listSchedule("123")
       .subscribe(data => {
         console.log(data)
-        this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at}) => {
-          return new Schedule(id, patientCPF, medicCRM, parseISO(String(horario)), parseISO(String(created_at)), parseISO(String(updated_at)));
+        this.schedulesData = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
+          return new Schedule(
+            id, 
+            patientCPF, 
+            medicCRM, 
+            parseISO(String(horario)), 
+            parseISO(String(created_at)), 
+            parseISO(String(updated_at))
+          );
         })
 
         this.schedules = [...this.schedulesData]
+      });
+
+    this.medicalService.listPatients("123")
+      .subscribe(data => {
+        console.log(data)
+        this.patients = data.map(({ cpf, name, email, idade, created_at, updated_at }) => {
+          return new Patient(
+            cpf, 
+            name, 
+            email, 
+            idade,
+            parseISO(String(created_at)), 
+            parseISO(String(updated_at))
+          );
+        })
       });
   }
 
@@ -57,7 +74,7 @@ export class MedicalComponent implements OnInit {
 
     this.schedules = this.schedulesData.filter(
       schedule => isSameDay(schedule.horario, date)
-      )
+    )
   }
 
 }

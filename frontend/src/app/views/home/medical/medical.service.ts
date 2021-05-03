@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
 import { Schedule } from '../../../../../../common/models/Schedule';
+import { Patient } from '../../../../../../common/models/Patient';
 
 
 @Injectable({
@@ -16,8 +17,15 @@ export class MedicalService {
 
   constructor(private http: HttpClient) { }
 
-  show(id: string): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(this.url + `/medics/schedules/${id}`)
+  listSchedule(crm: string): Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(this.url + `/medics/schedules/${crm}`)
+      .pipe(
+        retry(2)
+      );
+  }
+
+  listPatients(crm: string): Observable<Patient[]> {
+    return this.http.get<Patient[]>(this.url + `/medics/patients/${crm}`)
       .pipe(
         retry(2)
       );
