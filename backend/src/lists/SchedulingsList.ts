@@ -7,13 +7,19 @@ class SchedulingsList {
         this.schedules = []
     }
 
-    create(horario: Date, patientCPF: string, medicCRM: string):Scheduling { 
+    create(horario: Date, patientCPF: Number, medicCRM: Number):Scheduling { 
         const schedule = new Scheduling()
-
+        const existentAppointment= this.findAllByCPF(patientCPF)
+        const medicosDisponiveis=this.findAllByCRM(medicCRM)
+        if(existentAppointment) {
+            throw new Error('Patient already made an appointment!')
+        }
         Object.assign(schedule, {
             horario,
             patientCPF,
-            medicCRM
+            medicCRM,
+            created_at:new Date,
+            updated_at:new Date
         })
 
         this.schedules.push(schedule)
@@ -37,23 +43,27 @@ class SchedulingsList {
         return this.schedules
     }
  
-    findAllByCPF(patientCPF: string): Scheduling[] {
+    findAllByCPF(patientCPF: Number): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.patientCPF === patientCPF)
 
         return schedule
     }
 
-    findAllByCRM(medicCRM: string): Scheduling[] {
+    findAllByCRM(medicCRM: Number): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.medicCRM === medicCRM)
 
         return schedule
     }
-
+    checkScheduling(horario: Date, patientCPF: Number, medicCRM: Number){
+        if(this.findAllByCPF(patientCPF)!=null){
+            return false;
+        }
+        else{
+            this.create(horario,patientCPF,medicCRM);
+        }
+    }
     /* TODO: 
-          [] Antes de criar um agendamento verificar se já existe um agendamento para essa pessoa e esse médico nesse dia
-          [] ...
-
-          Pensar em mais requisitos
+         talvez atualizar o horário: já consegue fazer isso com o que eu já tenho?
     */
 }
 
