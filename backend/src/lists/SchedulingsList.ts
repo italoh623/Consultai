@@ -1,13 +1,23 @@
 import Scheduling from '../models/Scheduling'
 
+
 class SchedulingsList {
     private schedules: Scheduling[]
 
     constructor() {
-        this.schedules = []
+        this.schedules = [
+            {
+                id: 'sdhaiiusodhi',
+                patientCPF: '008',
+                medicCRM: '000',
+                horario: new Date(),
+                created_at: new Date(),
+                updated_at: new Date()
+            }
+        ]
     }
 
-    create(horario: Date, patientCPF: Number, medicCRM: Number):Scheduling { 
+    create(horario: Date, patientCPF: string, medicCRM: string):Scheduling { 
         const schedule = new Scheduling()
         const existentAppointment= this.findAllByCPF(patientCPF)
         const medicosDisponiveis=this.findAllByCRM(medicCRM)
@@ -27,7 +37,7 @@ class SchedulingsList {
         return schedule
     }
 
-    remover(id: string): Scheduling[] {
+    remove(id: string): Scheduling[] {
         const scheduleIndex = this.schedules.findIndex(schedule => schedule.id === id)
 
         if(scheduleIndex == -1) {
@@ -39,32 +49,20 @@ class SchedulingsList {
         return this.schedules
     }
 
-    getAll(): Scheduling[] {
-        return this.schedules
-    }
  
-    findAllByCPF(patientCPF: Number): Scheduling[] {
+    findAllByCPF(patientCPF: string): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.patientCPF === patientCPF)
 
         return schedule
     }
 
-    findAllByCRM(medicCRM: Number): Scheduling[] {
+    
+    findAllByCRM(medicCRM: string): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.medicCRM === medicCRM)
-
+    
         return schedule
     }
-    checkScheduling(horario: Date, patientCPF: Number, medicCRM: Number){
-        if(this.findAllByCPF(patientCPF)!=null){
-            return false;
-        }
-        else{
-            this.create(horario,patientCPF,medicCRM);
-        }
-    }
-    /* TODO: 
-         talvez atualizar o horário: já consegue fazer isso com o que eu já tenho?
-    */
+          
 }
 
 export default SchedulingsList
