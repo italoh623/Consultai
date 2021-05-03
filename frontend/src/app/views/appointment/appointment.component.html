@@ -1,7 +1,9 @@
-<div class="container appointment-body">
+<div mat-dialog-title>
     <h1>Consulta</h1>
     <span>Paciente: John Doe</span>
-    <hr>
+</div>
+
+<div mat-dialog-content>
     <div id="queixas">
         <h3>Queixas</h3>
         <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
@@ -27,15 +29,18 @@
         <textarea class="form-control" name="" id="" cols="100%" rows="3" style="margin-bottom: 10px;"></textarea>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Peso</span>
-            <input type="text" class="form-control" placeholder="Em quilogramas" aria-label="Weight" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Em quilogramas" aria-label="Weight"
+                aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Altura</span>
-            <input type="text" class="form-control" placeholder="Em metros" aria-label="Height" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Em metros" aria-label="Height"
+                aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Pressão arterial</span>
-            <input type="text" class="form-control" placeholder="PAS x PAD" aria-describedby="basic-addon1" style="width: 30px;">
+            <input type="text" class="form-control" placeholder="PAS x PAD" aria-describedby="basic-addon1"
+                style="width: 30px;">
         </div>
         <div>
             <span hidden>IMC = </span>
@@ -57,18 +62,22 @@
         <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
     </div>
     <hr>
-        <button type="button" style="margin-right:15px" class="btn btn-primary">
-            Adicionar receituário
-        </button>
-        <button type="button" style="margin-right:15px" class="btn btn-primary">
-            Adicionar solicitação de exame
-        </button>
-        <button type="button" style="margin-right:15px" class="btn btn-primary">
-            Adicionar atestado
-        </button>
-        <button type="button" style="margin-right:15px" class="btn btn-primary">
-            Adicionar encaminhamento
-        </button>
-    <hr>
-    <button type="button"class="btn btn-success">Salvar consulta</button>
+    <button type="button" style="margin-right:15px" class="btn btn-primary">
+        Adicionar receituário
+    </button>
+    <button type="button" style="margin-right:15px" class="btn btn-primary">
+        Adicionar solicitação de exame
+    </button>
+    <button type="button" style="margin-right:15px" class="btn btn-primary">
+        Adicionar atestado
+    </button>
+    <button type="button" style="margin-right:15px" class="btn btn-primary">
+        Adicionar encaminhamento
+    </button>
+
+
+</div>
+
+<div mat-dialog-actions>
+    <button type="button" class="btn btn-success">Salvar consulta</button>
 </div>
