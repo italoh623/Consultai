@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import MedicsList from '../lists/MedicsList'
+import PatientsList from '../lists/PatientsList'
 import SchedulingsList from '../lists/SchedulingsList'
 import SchedulingService from '../services/SchedulingService'
 
@@ -17,14 +18,6 @@ schedulingsRouter.post('/', (request, response) => {
     return response.json(schedule)
 })
 
-schedulingsRouter.get('/:especialidade', (request, response) => {
-    const { especialidade } = request.params
-    
-    const schedule = schedulingService.filtrarPorEspecialidade(especialidade)
-
-    return response.json(schedule)
-})
-
 schedulingsRouter.delete('/:id', (request, response) => {
     const { id } = request.params
 
@@ -32,5 +25,6 @@ schedulingsRouter.delete('/:id', (request, response) => {
 
     return response.send()
 })
+
 
 export default schedulingsRouter

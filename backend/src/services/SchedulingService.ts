@@ -1,6 +1,8 @@
 import MedicsList from '../lists/MedicsList'
+import PatientsList from '../lists/PatientsList'
 import SchedulingList from '../lists/SchedulingsList'
 import Medic from '../models/Medic'
+import Patient from '../models/Patient'
 
 
 class SchedulingService {

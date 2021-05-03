@@ -8,8 +8,8 @@ class SchedulingsList {
         this.schedules = [
             {
                 id: 'sdhaiiusodhi',
-                patientCPF: '008',
-                medicCRM: '000',
+                patientCPF: '007',
+                medicCRM: '123',
                 horario: new Date(),
                 created_at: new Date(),
                 updated_at: new Date()
