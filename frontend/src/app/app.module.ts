@@ -28,11 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
 import { FileSystemComponent } from './views/file-system/file-system.component';
-<<<<<<< HEAD
 import { FileSystemDirective } from './views/file-system/file-system.directive';
-=======
 import { ScheduleComponent } from './views/schedule/schedule.component';
->>>>>>> c98f2cd5c0352f8e09d1b2e28a00ded557da80a1
 
 @NgModule({
   declarations: [
@@ -46,11 +43,8 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
     RecordComponent,
     AppointmentComponent,
     FileSystemComponent,
-<<<<<<< HEAD
-    FileSystemDirective
-=======
-    ScheduleComponent
->>>>>>> c98f2cd5c0352f8e09d1b2e28a00ded557da80a1
+    FileSystemDirective,
+    ScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,10 +63,10 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })
