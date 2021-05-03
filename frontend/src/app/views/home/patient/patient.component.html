@@ -1,1 +1,18 @@
-<p>patient works!</p>
+<ng-template>
+  <mat-icon class="example-tab-icon">calendar_today</mat-icon>
+  Minhas Consultas
+</ng-template>
+
+<div class="listar">
+  <button mat-card class="card" *ngFor="let schedule of schedules">
+    <header>
+      <mat-card-title>{{ schedule.patientCPF }}</mat-card-title>
+      <mat-card-subtitle>{{ formatDate(schedule.horario) }}</mat-card-subtitle>
+    </header>
+
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="navigateToMedicalAppointment(schedule.id)">Entrar</button>
+      <button mat-stroked-button color="warn">Cancelar</button>
+    </mat-card-actions>
+  </button>
+</div>
