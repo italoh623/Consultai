@@ -3,13 +3,12 @@ import MedicsList from '../lists/MedicsList'
 import SchedulingList from '../lists/SchedulingsList'
 import Medic from '../models/Medic'
 // import Patient from '../models/Patient'
-import { format, getDaysInMonth, getDate, getHours, isAfter } from 'date-fns'
+import { format, getDaysInMonth, getDate, getHours, isAfter, parseISO } from 'date-fns'
 // import Scheduling from '../models/Scheduling'
 
-interface RequestMonth {
+interface Request {
     medicCRM: string
-    mes: number
-    ano: number
+    date: string 
 }
 
 type ResponseMonth = Array<{
@@ -17,12 +16,6 @@ type ResponseMonth = Array<{
     disponivel: boolean
   }>
 
-  interface RequestDay {
-    medicCRM: string
-    dia: number
-    mes: number
-    ano: number
-}
 
   type ResponseDay = Array<{
     hora: number
@@ -51,18 +44,22 @@ class SchedulingService {
         return medicOfSpeciality
     }
 
-    filtrarDisponibilidadePorMes({ medicCRM, mes, ano }: RequestMonth): ResponseMonth {
-        const parsedMes = String(mes).padStart(2, '0')
-
+    filtrarDisponibilidadePorMes({ medicCRM, date }: Request): ResponseMonth {
+        const parsedDate = parseISO(date)
+        
+        const formatedDate = format(parsedDate, 'MM/yyyy')
+        
         const schedule = this.schedulingList.findAllByCRM(medicCRM)
         // console.log(schedule)
-        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'MM/yyyy') === (`${parsedMes}/${ano}`))
+        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'MM/yyyy') === formatedDate)
 
-        const numberOfDaysInMonth = getDaysInMonth(new Date(ano, mes-1))
+        const [mes, ano] = formatedDate.split('/')
+
+        const numberOfDaysInMonth = getDaysInMonth(new Date(Number(ano), Number(mes)-1))
 
         const eachDayArray = Array.from(
             { length: numberOfDaysInMonth },
-            (_, index) => index +1,
+            (_, index) => index + 1,
         )
 
         const disponibilidade = eachDayArray.map(dia => {
@@ -77,18 +74,24 @@ class SchedulingService {
         })
             
         return disponibilidade
+
+        
     }
 
-    filtrarDisponibilidadePorDia({ medicCRM, dia, mes, ano }: RequestDay): ResponseDay {
-        const parsedDia = String(dia).padStart(2, '0')
-        const parsedMes = String(mes).padStart(2, '0')
+    filtrarDisponibilidadePorDia({ medicCRM, date }: Request): ResponseDay {
+        const parsedDate = parseISO(date)
+
+        const formatedDate = format(parsedDate, 'dd/MM/yyyy')
 
         const schedule = this.schedulingList.findAllByCRM(medicCRM)
         // console.log(schedule)
-        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'dd/MM/yyyy') === (`${parsedDia}/${parsedMes}/${ano}`))
+        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'dd/MM/yyyy') === formatedDate)
 
         const hourStart = 8
 
+        const [dia, mes, ano] = formatedDate.split('/')
+        // console.log({ dia, mes, ano })
+        
         const eachHourArray = Array.from(
             { length: 10 },
             (_, index) => index + hourStart,
@@ -96,11 +99,11 @@ class SchedulingService {
 
         const disponibilidade = eachHourArray.map(hora => {
             const hasAppointmentsInHour = scheduleDisponiveis.find(schedule => {
-                return getHours(schedule.horario)=== hora
+                return getHours(schedule.horario) === hora
             })
 
             const currentDate = new Date(Date.now())
-            const compareDate = new Date(ano, mes-1, dia, hora)
+            const compareDate = new Date(Number(ano), Number(mes)-1, Number(dia), hora)
             // console.log(compareDate)
 
             return {
@@ -118,3 +121,7 @@ class SchedulingService {
  }
 
 export default SchedulingService
+
+function toISOString() {
+    throw new Error('Function not implemented.')
+}
