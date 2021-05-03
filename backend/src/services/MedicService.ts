@@ -33,5 +33,11 @@ export default class MedicService {
 
         return medicOfSpeciality
     }
+
+    getSchedules(crm: string) {
+        const schedules = this.schedulingsList.findAllByCRM(crm)
+
+        return schedules
+    }
 }
 

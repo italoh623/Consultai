@@ -59,10 +59,11 @@ medicsRouter.get('/espec/:especialidade', (request, response) => {
     return response.json(schedule)
 })
 
-medicsRouter.post('/appointments', (request, response) => {
-    const { crm } = request.body
+medicsRouter.get('/appointments/:crm', (request, response) => {
+    const { crm } = request.params
 
-    
+    const consultas = medicsService.getSchedules(crm)
+    return response.json(consultas)   
 })
 
 export default medicsRouter
