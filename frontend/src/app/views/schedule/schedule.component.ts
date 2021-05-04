@@ -3,6 +3,7 @@ import { format, isSameDay, parseISO } from 'date-fns'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Medical } from '../../../../../common/models/Medical';
 import { ScheduleService } from './schedule.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './schedule.component.html',
