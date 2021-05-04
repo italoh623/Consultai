@@ -48,6 +48,11 @@ schedulingsRouter.get('/:especialidade', (request, response) => {
 
     return response.json(schedule)
 })
+schedulingsRouter.get('/medics', (request, response) => {
+    const medics = schedulingService.getAll()
+
+    return response.json(medics)
+})
 
 schedulingsRouter.get('/medic/:crm', (request, response) => {
     const { crm } = request.params

@@ -47,6 +47,10 @@ class SchedulingService {
 
         return medic
     }
+    getAll() {
+        const medics = this.medicsList.getAll()
+        return medics
+    }
 
     findAllByCrm(medicCRM: string): Scheduling[] {
         const schedules = this.schedulingList.findAllByCRM(medicCRM)

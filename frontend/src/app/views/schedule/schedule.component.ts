@@ -3,6 +3,7 @@ import { format, isSameDay, parseISO } from 'date-fns'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Medical } from '../../../../../common/models/Medical';
 import { ScheduleService } from './schedule.service';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class ScheduleComponent implements OnInit {
   public inputs!: FormGroup;
   //como criar um vetor de consultas?
   medicos: Medical[] = [];
+  medicos_especialidade: Medical[] = [];
 
   constructor(
     private scheduleService: ScheduleService,
@@ -25,10 +27,12 @@ export class ScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.scheduleService.getespecialidade("dermatologista")
+    
+      this.scheduleService.getall()
       .subscribe(data => {
         console.log(data);
         this.medicos = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
+          console.log( this.medicos );
           return new Medical(
             crm,
             name,
@@ -40,6 +44,7 @@ export class ScheduleComponent implements OnInit {
           );
         })
       })
+      
       this.inputs = this.fb.group({
 
         especialidade_input: [''],
@@ -68,8 +73,23 @@ export class ScheduleComponent implements OnInit {
 
   } 
   //filtrarEspecialidade(especialidade:string){
-  filtrarEspecialidade(){
-    console.log(this.inputs.value.especialidade_input);
+  filtrarEspecialidade(especialidade:string){
+    this.scheduleService.getespecialidade(especialidade)
+      .subscribe(data => {
+        console.log(data);
+        this.medicos_especialidade = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
+          return new Medical(
+            crm,
+            name,
+            especialidade,
+            email,
+            horarios,
+            parseISO(String(created_at)),
+            parseISO(String(updated_at))
+          );
+        })
+      })
+    console.log(this.inputs.value.medicos);
   }
   filtrarData(){
     console.log(this.inputs.value.data_input);
