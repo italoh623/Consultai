@@ -40,6 +40,13 @@ archivesRouter.get('/:cpf', (request, response) => {
     response.json(archs)
 })
 
+archivesRouter.get('/id/:id', (request, response) => {
+    let { id } = request.params
+    let arc = archivesList.getById(id)
+
+    response.json(arc)
+})
+
 archivesRouter.delete('/:id', (request, response) => {
     return response.send()
 })

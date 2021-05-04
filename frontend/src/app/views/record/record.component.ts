@@ -10,6 +10,7 @@ import { ArchiveService } from '../file-system/file-system.service';
 import { Archive } from '../../../../../common/models/Archive';
 import { MatDialog } from '@angular/material/dialog';
 import { FileSystemComponent } from '../file-system/file-system.component';
+import { ViewFileComponent } from '../view-file/view-file.component';
 
 @Component({
   selector: 'app-record',
@@ -82,8 +83,18 @@ export class RecordComponent implements OnInit {
     )
   }
 
-  openArchive() {
+  openArchiveUpload() {
     const dialogRef = this.dialog.open(FileSystemComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  displayArchive(id: string) {
+    const dialogRef = this.dialog.open(ViewFileComponent);
+    dialogRef.componentInstance.fileId = id;
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

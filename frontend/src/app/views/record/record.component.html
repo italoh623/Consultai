@@ -28,7 +28,7 @@
                 </thead>
                 <tbody *ngFor="let archive of archives">
                   <tr>
-                    <th scope="row"><a href="#">{{ archive.description }}</a></th>
+                    <th scope="row" (click)="displayArchive(archive.id)" style="cursor: pointer;">{{ archive.description }}</th>
                     <td>{{ archive.created_at }}</td>
                     <td>{{ archive.crm }}</td>
                   </tr>
@@ -37,7 +37,7 @@
 
             <div>
                 <!-- <span>Adicionar arquivo</span> -->
-                <button (click)="openArchive()">Adicionar arquivo <i class="fas fa-file-upload"></i></button>
+                <button (click)="openArchiveUpload()">Adicionar arquivo <i class="fas fa-file-upload"></i></button>
             </div>
         </div>
         <hr>

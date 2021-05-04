@@ -47,4 +47,11 @@ export class ArchiveService {
         retry(2)
       )
   }
+
+  getById(id: string): Observable<Archive> {
+    return this.http.get<Archive>(this.url + `/archives/id/${id}`, {headers: this.headers})
+    .pipe(
+      retry(2)
+    )
+  }
 }

@@ -29,6 +29,7 @@ import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
 import { FileSystemComponent } from './views/file-system/file-system.component';
 import { ScheduleComponent } from './views/schedule/schedule.component';
+import { ViewFileComponent } from './views/view-file/view-file.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
     AppointmentComponent,
     FileSystemComponent,
     ScheduleComponent,
+    ViewFileComponent,
   ],
   imports: [
     BrowserModule,

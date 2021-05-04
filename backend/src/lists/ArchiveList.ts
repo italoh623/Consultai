@@ -39,6 +39,10 @@ class ArchiveList{
     add(archive: Archive) {
         this.archives.push(archive)
     }
+
+    getById(id: string) {
+        return this.archives.find(a => a.id === id)
+    }
 }
 
 export default ArchiveList
