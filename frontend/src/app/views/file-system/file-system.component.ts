@@ -25,8 +25,11 @@ export class FileSystemComponent implements OnInit {
   ) { }
 
   submit(){
-    if((<HTMLInputElement>document.getElementById('input')).files![0]){
-      var imagem = (<HTMLInputElement>document.getElementById('input')).files![0];
+    var imagens : FileList | null;
+    var imagem : File | null;
+    imagens = (<HTMLInputElement>document.getElementById('input')).files;
+    imagem = imagens![0];
+    if(imagem){
       var file_description = this.formFiles.value.file_description;
       var file_obs = this.formFiles.value.file_obs;
 

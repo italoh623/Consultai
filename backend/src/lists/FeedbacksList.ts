@@ -1,13 +1,10 @@
 import Feedback from "../models/Feedback"
 import nodemailer from 'nodemailer'
+import IFeedbacksList from "./IFeedbacksList"
 
-interface ICreateFeedbackDTO {
-    consultaId: string
-    rating: string
-    descricao: string
-}
+import { ICreateFeedbackDTO } from '../lists/IFeedbacksList'
 
-class FeedbacksList {
+class FeedbacksList implements IFeedbacksList {
     private feedbacks: Feedback[]
     private static INSTANCE: FeedbacksList
 
@@ -17,7 +14,7 @@ class FeedbacksList {
                 id: '15',
                 consultaId: '12',
                 rating: 'bom',
-                descricao: 'kkkkkkkkkkkkkkkk F.'
+                descricao: 'Gostei bastente dessa médica, me parece ser competente.'
             },
         ]
     }
@@ -69,7 +66,17 @@ class FeedbacksList {
                 to: email,
                 subject: "Feedback ✔", 
                 text: `Você acabou de receber uma avaliação com métrica ${rating} que diz: ${descricao}`,
-                html: `Você acabou de receber uma avaliação com métrica <b>${rating}</b> que diz: <b>${descricao}</b>`
+                html: `<p>Para que você acabou de receber uma avaliação da sua última consulta.</p>
+                <p>Sua avaliação recebeu a seguinte métrica, avaliado em nível: <b>${rating}</b>.</p>
+                <p>Seu paciente deixou um breve comentário sobre o feedback da consulta:</p>
+                <p>
+                  <b>${descricao}</b>
+                </p>
+                <p>Este e-mail é de carater apenas informativo, não será exibido no site.</p>
+                <p>
+                  Obrigado, <br />
+                  <strong>Equipe Consultai</strong>
+                </p>`
               })
     
             console.log("Message sent: %s", message.messageId);
