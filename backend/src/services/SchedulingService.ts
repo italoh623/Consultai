@@ -4,6 +4,7 @@ import SchedulingList from '../lists/SchedulingsList'
 import Medic from '../models/Medic'
 // import Patient from '../models/Patient'
 import { format, getDaysInMonth, getDate, getHours, isAfter, parseISO } from 'date-fns'
+import Scheduling from '../models/Scheduling'
 // import Scheduling from '../models/Scheduling'
 
 interface Request {
@@ -38,6 +39,18 @@ class SchedulingService {
         return schedule
     }
     
+    getMedic(medicCRM: string) {
+        const medic = this.medicsList.findByCrm(medicCRM)
+
+        return medic
+    }
+
+    findAllByCrm(medicCRM: string): Scheduling[] {
+        const schedules = this.schedulingList.findAllByCRM(medicCRM)
+
+        return schedules
+    }
+
     filtrarPorEspecialidade(especialidade: string): Medic[] {
         const medicOfSpeciality = this.medicsList.findBySpeciality(especialidade)
 
