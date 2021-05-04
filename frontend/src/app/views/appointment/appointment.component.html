@@ -3,44 +3,98 @@
     <span>Paciente: John Doe</span>
 </div>
 
-<div mat-dialog-content>
+<form [formGroup]="appointmentForm" mat-dialog-content>
     <div id="queixas">
         <h3>Queixas</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentComplaints"
+        ></textarea>
     </div>
     <hr>
     <div id="doencas">
         <h3>Doenças Prévias</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentPreviousDiseases"
+        ></textarea>
     </div>
     <hr>
     <div id="medicacoes">
         <h3>Medicações em uso</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentMedications"
+        ></textarea>
     </div>
     <hr>
     <div id="antecedentes">
         <h3>Antecedentes Familiares</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentFamilyBackground"
+        ></textarea>
     </div>
     <hr>
     <div id="exame-fisico">
         <h3>Exame Físico</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3" style="margin-bottom: 10px;"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%"
+            rows="3" 
+            style="margin-bottom: 10px;"
+            formControlName="appointmentPhysicalExam"
+        ></textarea>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Peso</span>
-            <input type="text" class="form-control" placeholder="Em quilogramas" aria-label="Weight"
-                aria-describedby="basic-addon1">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Em quilogramas" 
+                aria-label="Weight"
+                aria-describedby="basic-addon1"
+                formControlName="appointmentWeight"
+            >
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Altura</span>
-            <input type="text" class="form-control" placeholder="Em metros" aria-label="Height"
-                aria-describedby="basic-addon1">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Em metros" 
+                aria-label="Height"
+                aria-describedby="basic-addon1"
+                formControlName="appointmentHeight"
+            >
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Pressão arterial</span>
-            <input type="text" class="form-control" placeholder="PAS x PAD" aria-describedby="basic-addon1"
-                style="width: 30px;">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="PAS x PAD" 
+                aria-describedby="basic-addon1"
+                style="width: 30px;"
+                formControlName="appointmentBloodPressure"
+            >
         </div>
         <div>
             <span hidden>IMC = </span>
@@ -54,12 +108,26 @@
     <hr>
     <div>
         <h3>Hipótese Diagnóstica</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id=""
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentDiagnosticHypothesis"
+        ></textarea>
     </div>
     <hr>
     <div>
         <h3>Conduta</h3>
-        <textarea class="form-control" name="" id="" cols="100%" rows="3"></textarea>
+        <textarea 
+            class="form-control" 
+            name="" 
+            id="" 
+            cols="100%" 
+            rows="3"
+            formControlName="appointmentConduct"
+        ></textarea>
     </div>
     <hr>
     <button type="button" style="margin-right:15px" class="btn btn-primary">
@@ -76,8 +144,12 @@
     </button>
 
 
-</div>
+</form>
 
 <div mat-dialog-actions>
-    <button type="button" class="btn btn-success">Salvar consulta</button>
+    <button 
+        type="button" 
+        class="btn btn-success" 
+        (click)="sendForm()"
+    >Salvar consulta</button>
 </div>

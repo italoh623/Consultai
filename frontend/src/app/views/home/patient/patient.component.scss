@@ -1,24 +1,11 @@
-.example-tab-icon {
-  margin-right: 0.5rem;
-}
-
-.dateSelector {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-
-  margin: 0 1rem;
-  margin-top: 1rem;
+.example-spacer {
+  flex: 1 1 auto;
 }
 
 .listar {
-
   margin: 0 1rem;
 
   .card {
-    // display: flex;
-    // flex-direction: row;
-  
     width: 100%;
     padding: 1rem 0.5rem;
     margin: 1rem 0;
