@@ -78,6 +78,13 @@ class SchedulingService {
         return medicOfSpeciality
     }
 
+    getConsultasPaciente(cpf: string): Scheduling[]{
+        const schedules = this.schedulingList.findAllByCPF(cpf)
+        console.log(schedules)
+        return schedules
+    }
+
+
     filtrarDisponibilidadePorMes({ medicCRM, date }: Request): ResponseMonth {
         const parsedDate = parseISO(date)
         

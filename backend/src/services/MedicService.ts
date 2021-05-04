@@ -76,8 +76,13 @@ export default class MedicService {
             hipotese, 
             conduta
         )
-
+        
+        console.log(file)
         return file
+    }
+
+    getAllFiles() {
+        return this.appointmentFileList.getAll()
     }
 }
 

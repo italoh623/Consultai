@@ -13,8 +13,8 @@ export default class AppointmentFileList {
                 doencas: 'Nenhum historico de doencas.',
                 medicacoes: 'Dipirona', 
                 antecedentes: 'Nenhum antecedente familiar', 
-                peso: 80,
-                altura: 1.75,
+                peso: '80',
+                altura: '1.75',
                 pressao_art: '80x120',
                 hipotese: 'Virose',
                 conduta: 'Tomar dipirona por 3 dias.',
@@ -67,5 +67,8 @@ export default class AppointmentFileList {
         return patientFiles
     }
 
+    getAll(): any[] {
+        return this.files
+    }
 
 }
