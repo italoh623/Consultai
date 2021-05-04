@@ -2,9 +2,9 @@ import { analyzeAndValidateNgModules, NONE_TYPE } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { Archive } from '../../../../../../common/models/Archive'; 
-import { PatientService } from '../../home/patient/patient.service';
-import { MedicalService } from '../../home/medical/medical.service';
+import { Archive } from '../../../../../common/models/Archive'; 
+import { PatientService } from '../home/patient/patient.service';
+import { MedicalService } from '../home/medical/medical.service';
 import { ActivatedRoute } from '@angular/router';
 
 
