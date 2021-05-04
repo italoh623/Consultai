@@ -49,6 +49,14 @@ schedulingsRouter.get('/:especialidade', (request, response) => {
     return response.json(schedule)
 })
 
+schedulingsRouter.get('/medic/:crm', (request, response) => {
+    const { crm } = request.params
+
+    const schedules = schedulingService.findAllByCrm(crm)
+
+    return response.json(schedules)
+})
+
 schedulingsRouter.delete('/:id', (request, response) => {
     const { id } = request.params
 
