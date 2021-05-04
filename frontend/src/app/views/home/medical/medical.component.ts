@@ -82,7 +82,7 @@ export class MedicalComponent implements OnInit {
         })
       });
   }
-
+  
   formatDate(date: Date): string {
     return format(date, "dd/MM - HH:mm", { locale: ptBR });
   }
@@ -98,6 +98,11 @@ export class MedicalComponent implements OnInit {
   navigateToMedicalAppointment(scheduleId: string) {
     console.log(scheduleId)
     this.router.navigateByUrl(`/`)
+  }
+
+  goToRecord(cpf: string) {
+    console.log(cpf)
+    this.router.navigateByUrl(`/record/${cpf}`)
   }
 
 }
