@@ -70,7 +70,7 @@ schedulingsRouter.get('/medic/:crm', (request, response) => {
 schedulingsRouter.get('/patient/:cpf', (request, response) => {
     const { cpf } = request.params
 
-    const schedules = schedulingService.findAllByCrm(cpf)
+    const schedules = schedulingService.findAllByCPF(cpf)
 
     return response.json(schedules)
 })

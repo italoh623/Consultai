@@ -66,6 +66,12 @@ class SchedulingService {
         return schedules
     }
 
+    findAllByCPF(pacientCPF: string): Scheduling[] {
+        const schedules = this.schedulingList.findAllByCPF(pacientCPF)
+
+        return schedules
+    }
+
     filtrarPorEspecialidade(especialidade: string): Medic[] {
         const medicOfSpeciality = this.medicsList.findBySpeciality(especialidade)
 
