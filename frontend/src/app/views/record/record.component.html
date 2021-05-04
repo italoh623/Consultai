@@ -26,23 +26,18 @@
                     <th scope="col">Enviado por</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let archive of archives">
                   <tr>
-                    <th scope="row"><a href="#">Exame de sangue</a></th>
-                    <td>30/03/2021</td>
-                    <td>Dr. Arthur Fonseca</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="#">Radiografia do pulmao</a></th>
-                    <td>21/02/2020</td>
-                    <td>Dra. Maria Andrade</td>
+                    <th scope="row"><a href="#">{{ archive.description }}</a></th>
+                    <td>{{ archive.created_at }}</td>
+                    <td>{{ archive.crm }}</td>
                   </tr>
                 </tbody>
             </table>
 
             <div>
                 <!-- <span>Adicionar arquivo</span> -->
-                <button>Adicionar arquivo <i class="fas fa-file-upload"></i></button>
+                <button (click)="openArchive()">Adicionar arquivo <i class="fas fa-file-upload"></i></button>
             </div>
         </div>
         <hr>
