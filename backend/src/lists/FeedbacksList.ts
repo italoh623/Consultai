@@ -1,10 +1,10 @@
 import Feedback from "../models/Feedback"
 import nodemailer from 'nodemailer'
-import IFeedbacksList from "./IFeedbacksList"
+// import IFeedbacksList from "./IFeedbacksList"
 
-import { ICreateFeedbackDTO } from '../lists/IFeedbacksList'
+// import { ICreateFeedbackDTO } from '../lists/IFeedbacksList'
 
-class FeedbacksList implements IFeedbacksList {
+class FeedbacksList  {
     private feedbacks: Feedback[]
     private static INSTANCE: FeedbacksList
 
@@ -32,19 +32,19 @@ class FeedbacksList implements IFeedbacksList {
         return feedback
     }
 
-    create({ consultaId, rating, descricao }: ICreateFeedbackDTO): Feedback {
-        const feedback = new Feedback()
+    // create({ consultaId, rating, descricao }: ICreateFeedbackDTO): Feedback {
+    //     const feedback = new Feedback()
 
-        Object.assign(feedback, {
-            consultaId,
-            rating,
-            descricao
-        })
+    //     Object.assign(feedback, {
+    //         consultaId,
+    //         rating,
+    //         descricao
+    //     })
 
-        this.feedbacks.push(feedback)
+    //     this.feedbacks.push(feedback)
 
-        return feedback
-    }
+    //     return feedback
+    // }
 
     async sendEmail(feedbackId: string, email: string): Promise<void> {
         nodemailer.createTestAccount().then(async testAccount => {
