@@ -1,7 +1,12 @@
 <div class="content">
   <div class="tools">
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-      <mat-icon>photo_camera</mat-icon>
+    <button 
+      mat-fab 
+      color="primary" 
+      aria-label="Example icon button with a delete icon"
+      (click)="solicitarConsulta()"
+    >
+      <mat-icon>sync</mat-icon>
     </button>
     <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
       <mat-icon>call</mat-icon>
@@ -23,11 +28,7 @@
         <mat-card-title>Marta Reis</mat-card-title>
         <mat-card-subtitle>Endocrinologista</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-actions>
-        <button mat-button><mat-icon>favorite</mat-icon></button>
-        <button mat-button><mat-icon>share</mat-icon></button>
-      </mat-card-actions>
+      <img mat-card-image src="https://www.ceen.com.br/wp-content/uploads/2019/08/Carreira-m%C3%A9dica-6-dicas-para-ser-um-m%C3%A9dico-bem-sucedido.jpg" alt="Photo of a Shiba Inu">
     </mat-card>
 
     <mat-card class="example-card">
@@ -36,11 +37,7 @@
         <mat-card-title>Carlos Moreira</mat-card-title>
         <mat-card-subtitle>Paciente</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-actions>
-        <button mat-button><mat-icon>favorite</mat-icon></button>
-        <button mat-button><mat-icon>share</mat-icon></button>
-      </mat-card-actions>
+      <img mat-card-image src="https://static3.depositphotos.com/1008154/245/i/600/depositphotos_2451633-stock-photo-happy-black-man.jpg">
     </mat-card>
   </main>
 

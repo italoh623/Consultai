@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Schedule } from '../../../../../common/models/Schedule';
 
 import { AppointmentComponent } from '../appointment/appointment.component';
+import { ScheduleService } from '../schedule/schedule.service';
 
 @Component({
   selector: 'app-anamnesis-call',
@@ -11,7 +13,15 @@ import { AppointmentComponent } from '../appointment/appointment.component';
 })
 export class AnamnesisCallComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute) { }
+  // TODO: pegar CRM e CPF reais da consulta
+  patientCPF: string = "123";
+  medicCRM: string = '123';
+
+  constructor(
+    public dialog: MatDialog, 
+    private route: ActivatedRoute,
+    private scheduleService: ScheduleService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -19,18 +29,30 @@ export class AnamnesisCallComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(AppointmentComponent);
     const consultaId = this.route.snapshot.paramMap.get('id');
-
-    // TODO: pegar CRM e CPF reais da consulta
-    const medicCRM = '123'
-    const patientCPF = '123'
     
     dialogRef.componentInstance.consultaId = String(consultaId);
-    dialogRef.componentInstance.patientCPF = patientCPF;
-    dialogRef.componentInstance.medicCRM = medicCRM;
+    dialogRef.componentInstance.patientCPF = this.patientCPF;
+    dialogRef.componentInstance.medicCRM = this.medicCRM;
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  solicitarConsulta() {
+    const today = new Date();
+    const nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+
+    this.scheduleService.create(new Schedule(
+      "0",
+      this.patientCPF,
+      this.medicCRM,
+      nextweek,
+      new Date(),
+      new Date()
+      ));
+      
+    alert("Consulta presencial marcada para a próxima semana")
   }
 
 }
