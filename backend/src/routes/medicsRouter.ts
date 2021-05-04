@@ -66,4 +66,45 @@ medicsRouter.get('/schedules/:crm', (request, response) => {
     return response.json(consultas)   
 })
 
+medicsRouter.post('/apt-file', (request, response) => {
+    const { 
+        pacientCPF, 
+        medicCRM, 
+        consultaId, 
+        queixas, 
+        doencas, 
+        medicacoes, 
+        antecedentes, 
+        peso, 
+        altura, 
+        pressao_art, 
+        hipotese, 
+        conduta 
+    } = request.body
+
+    const file = medicsService.insertAppointmentFile(
+        pacientCPF, 
+        medicCRM, 
+        consultaId, 
+        queixas, 
+        doencas, 
+        medicacoes, 
+        antecedentes, 
+        peso, 
+        altura, 
+        pressao_art, 
+        hipotese, 
+        conduta
+    )
+    
+    return response.json(file)
+})
+
+medicsRouter.get('/apt-files/:cpf', (request, response) => {
+    const { cpf } = request.params
+    const files = medicsService.getPatientFiles(cpf)
+
+    return response.json(files)
+})
+
 export default medicsRouter

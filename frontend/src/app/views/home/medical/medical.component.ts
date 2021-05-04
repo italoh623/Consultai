@@ -82,7 +82,7 @@ export class MedicalComponent implements OnInit {
         })
       });
   }
-
+  
   formatDate(date: Date): string {
     return format(date, "dd/MM - HH:mm", { locale: ptBR });
   }
