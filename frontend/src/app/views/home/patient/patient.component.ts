@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { format, parseISO, } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
@@ -17,13 +17,22 @@ export class PatientComponent implements OnInit {
 
   schedules: Schedule[] = [];
 
+  cpf: string | null;
+
   constructor(
     private patientService: PatientService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.patientService.listSchedulings("123")
+    this.cpf = this.route.snapshot.paramMap.get('id');
+
+    if (!this.cpf) { 
+      this.cpf = '' 
+    }
+
+    this.patientService.listSchedulings(this.cpf)
       .subscribe(data => {
         this.schedules = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
           return new Schedule(

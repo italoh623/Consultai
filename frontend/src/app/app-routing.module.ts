@@ -11,11 +11,11 @@ import { FeedbackComponent } from './views/feedback/feedback.component';
 
 const routes: Routes = [
   {
-    path: 'home/medical', 
+    path: 'home/medical/:id', 
     component: MedicalComponent 
   },
   {
-    path: 'home/patient', 
+    path: 'home/patient/:id', 
     component: PatientComponent 
   },
   { 

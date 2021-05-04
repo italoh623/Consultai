@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { format, isSameDay, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
@@ -24,16 +24,23 @@ export class MedicalComponent implements OnInit {
 
   patients: Patient[] = [];
 
-  crm: string = '123';
+  crm: string | null;
   medical: any;
 
   constructor(
     private fb: FormBuilder,
     private medicalService: MedicalService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.crm = this.route.snapshot.paramMap.get('id');
+
+    if (!this.crm) { 
+      this.crm = '' 
+    }
+
     this.scheduleForm = this.fb.group({
       scheduleDate: [Date.now()]
     })
