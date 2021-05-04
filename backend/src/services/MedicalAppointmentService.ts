@@ -34,10 +34,10 @@ class MedicalAppointmentService {
         this.medicalAppointmentsList.delete(id)
     }
 
-    getSchedule(agendamentoId: string): Scheduling {
-        const schedule = this.schedulingsList.findById(agendamentoId)
+    getMedicalAppointmentbySchedule(schedulingId: string): MedicalAppointment {
+        const medicalAppointment = this.medicalAppointmentsList.findBySchedulingId(schedulingId)
         
-        return schedule
+        return medicalAppointment
     }
 
 

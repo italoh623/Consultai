@@ -25,7 +25,6 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
     this.patientService.listSchedulings("123")
       .subscribe(data => {
-        console.log(data)
         this.schedules = data.map(({ id, patientCPF, medicCRM, horario, created_at, updated_at }) => {
           return new Schedule(
             id,

@@ -76,6 +76,14 @@ class MedicalAppointmentsList {
         return medicalAppointment
     } */
 
+    findBySchedulingId(schedulingId: string) {
+        const medicalAppointment = this.medicalAppointments.find(
+            medicalAppointment => medicalAppointment.agendamentoId === schedulingId
+        )
+
+        return medicalAppointment
+    }
+
 }
 
 export default MedicalAppointmentsList

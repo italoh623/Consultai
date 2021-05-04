@@ -27,9 +27,9 @@ medicalAppointmentsRouter.get('/agendamento/:agendamentoId', (request, response)
     
     const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
 
-    const schedule = medicalAppointmentService.getSchedule(agendamentoId)
+    const medicalAppointment = medicalAppointmentService.getMedicalAppointmentbySchedule(agendamentoId)
 
-    return response.json(schedule)
+    return response.json(medicalAppointment)
 })
 
 

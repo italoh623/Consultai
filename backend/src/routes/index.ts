@@ -15,7 +15,7 @@ router.use(cors())
 router.use('/patients', patientsRouter)
 router.use('/medics', medicsRouter)
 router.use('/schedulings', schedulingsRouter)
-router.use('/medical-appointments', medicalAppointmentsRouter)
+router.use('/medicalAppointments', medicalAppointmentsRouter)
 router.use('/feedbacks', feedbacksRouter)
 router.use('/archives', archivesRouter)
 
