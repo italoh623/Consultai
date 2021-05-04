@@ -1,13 +1,25 @@
 .form {
   display: flex;
   flex-direction: column;
-}
+  margin: 0 1rem;
 
-.rating {
-  display: inline;
-  margin-left: 10px;
-  
-  input {
-    margin-left: 20px;
+  .rating {
+    display: inline;
+    margin: 2rem 0;
+
+    mat-radio-button {
+      margin: 0 0.5rem;
+    }
+  }
+
+  textarea {
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+
+  button {
+    width: 6rem;
+    align-self: flex-end;
   }
 }
+

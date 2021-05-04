@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatRadioModule,
   ],
   providers: [
     MatDatepickerModule,

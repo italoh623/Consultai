@@ -14,6 +14,8 @@ export class FeedbackComponent implements OnInit {
   private rating: string;
   private consultaId: string | null;
 
+  ratings: string[] = ['Ruim', 'Regular', 'Bom', 'Ótimo'];
+
   constructor(
     private fb: FormBuilder,
     private feedbackService: FeedbackService,
@@ -25,7 +27,8 @@ export class FeedbackComponent implements OnInit {
     if (!this.consultaId) { this.consultaId = '' }
     console.log(this.consultaId)
     this.formFeedback = this.fb.group({
-      descricao: [""]
+      descricao: [""],
+      avaliacao: [""]
     })
   }
 

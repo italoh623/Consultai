@@ -1,17 +1,21 @@
 <form [formGroup]="formFeedback" class="form">
+
   <div class="rating">
-    <span>Avalie sua Consulta: </span>
-    <input type="radio" id="Ruim" name="rating" value="Ruim" (change)="changeRating('Ruim')">
-    <label for="Ruim">Ruim</label>
-    <input type="radio" id="Regular" name="rating" value="Regular" (change)="changeRating('Regular')">
-    <label for="Regular">Regular</label>
-    <input type="radio" id="Bom" name="rating" value="Bom" (change)="changeRating('Bom')">
-    <label for="Bom">Bom</label>
-    <input type="radio" id="Otimo" name="rating" value="Otimo" (change)="changeRating('Otimo')">
-    <label for="Otimo">Ótimo</label>
+    <label id="example-radio-group-label">Avalie sua Consulta:</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      formControlName="avaliacao"
+    >
+      <mat-radio-button class="example-radio-button" *ngFor="let rating of ratings" [value]="rating">
+        {{rating}}
+      </mat-radio-button>
+    </mat-radio-group>
   </div>
+  
 
   <textarea 
+    matInput
     name="" 
     id="" 
     cols="30" 
