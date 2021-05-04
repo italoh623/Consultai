@@ -6,15 +6,17 @@
             <form [formGroup]="formFiles" class="crm">
                 <p>Descrição: <input formControlName="file_description" type="text" class="folder-selection"></p>
                 <div class ='dropzone'>
-                    <input type="file" id="input">
+                    <input type="file" multiple id="input" accept="image/jpeg, image/png" >
                     <h3>Arraste e solte os arquivos</h3>
                     <h3>ou</h3>
                     <label for="fileDropRef">Buscar arquivo</label>
                 </div>
                 <p></p>
-                <div id="See file" ></div>
+                <div id="See file" *ngif='show'>
+                    <img src='' id ='preview' height='100' alt='preview do file escolhido'>
+                </div>
                 <p>Observações: </p>
-                <textarea class="folder-selection"></textarea>
+                <textarea formControlName="file_obs" class="folder-selection"></textarea>
                 <div class= "vertical-center" >
                     <button (click)="submit()" class="button-submit">Enviar</button>
                 </div>
