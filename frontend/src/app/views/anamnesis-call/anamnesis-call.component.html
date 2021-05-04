@@ -11,6 +11,7 @@
       color="primary" 
       aria-label="Example icon button with a delete icon"
       (click)="openDialog()"
+      name="openFicha"
     >
       <mat-icon>inventory</mat-icon>
     </button>
@@ -33,7 +34,7 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Carlos Moreira</mat-card-title>
+        <mat-card-title name="patientName">Carlos Moreira</mat-card-title>
         <mat-card-subtitle>Paciente</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">

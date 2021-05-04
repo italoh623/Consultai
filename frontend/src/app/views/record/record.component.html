@@ -11,8 +11,8 @@
         <div class="dados-gerais">
             <h3>Dados Gerais</h3>
             <ul>
-              <li><b>Idade</b> {{patient.idade}}</li>
-              <li><b>Email:</b> {{patient.email}}</li>
+              <li name="patientName"><b>Idade</b> {{patient.idade}}</li>
+              <li name="patientEmail"><b>Email:</b> {{patient.email}}</li>
             </ul>
         </div>
         <hr>
@@ -26,7 +26,7 @@
                     <th scope="col">Enviado por</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let archive of archives">
+                <tbody *ngFor="let archive of archives" name="listaImagens">
                   <tr>
                     <th scope="row" (click)="displayArchive(archive.id)" style="cursor: pointer;">{{ archive.description }}</th>
                     <td>{{ archive.created_at }}</td>
@@ -54,7 +54,7 @@
                     <th scope="col">Especialidade</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let file of cleanFiles">
+                <tbody *ngFor="let file of cleanFiles" name="listaAppointmentFiles">
                   <tr>
                     <th scope="row"><a href="#">{{ file.data }}</a></th>
                     <td>{{ file.medicName }}</td>
