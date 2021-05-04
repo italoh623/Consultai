@@ -43,8 +43,14 @@ export class PatientComponent implements OnInit {
   }
 
   navigateToMedicalAppointment(scheduleId: string) {
-    console.log(scheduleId)
-    this.router.navigateByUrl(`/`)
+    this.patientService.getMedicalAppointment(scheduleId)
+      .subscribe(data => {
+        const id = data;
+
+        if (data) {
+          this.router.navigateByUrl(`anamnesis-call/${id}`);
+        } 
+      })
   }
 
 }
