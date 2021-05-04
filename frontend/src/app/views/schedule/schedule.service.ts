@@ -57,6 +57,12 @@ export class ScheduleService {
         retry(2)
       );
   }
+  getall(): Observable<Medical[]> {
+    return this.http.get<Medical[]>(this.url + `/schedulings/medics`)
+      .pipe(
+        retry(2)
+      );
+  }
 
 
 }

@@ -4,7 +4,7 @@ Agendamento da consulta
 
 <form [formGroup]="inputs">
     <input formControlName="especialidade_input" type="text" placeholder="Digite uma especialidade">
-    <button (click)="filtrarEspecialidade()">Filtrar Especialidade</button>
+    <button (click)="filtrarEspecialidade('dermatologista')">Filtrar Especialidade</button>
 </form>
 
 <form [formGroup]="inputs">
@@ -13,11 +13,11 @@ Agendamento da consulta
 </form>
 
 <ul *ngFor="let medico of medicos">
-  <li>
+  <li *ngFor="let horario of medico.horarios">
      <span>{{medico.name}}  </span>
      <span>{{medico.especialidade}}  </span>
      <span>{{medico.crm}}  </span>
-     <span>{{medico.horarios}}  </span>
+     <span >{{horario.horario}}  </span>
      <span>{{medico.email}}  </span>
      <span><button (click)="salvar(1,14,111,1111)">Escolher</button></span>
      
