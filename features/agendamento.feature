@@ -23,6 +23,13 @@ Feature: Agendamento
         When Eu seleciono a médica "Clinico Geral"
         Then Eu sou direcionado para a página de escolha do médico
 
+    Scenario: Paciente reescolhe especialidade
+        Given Eu sou a paciente "Maria"
+        And Eu estou na página de escolha da especialidade "psiquiatra"
+        And Eu quero voltar a ver todos os horários disponiveis de todos as especialidade
+        When Eu seleciono o botão reiniciar pesquisa
+        Then Eu consigo ver  todos os horários disponiveis de todos as especialidade 
+
     Scenario: Cancelamento da consulta com sucesso
         Given Eu sou a paciente "Maria"
         And Eu estou marcada com uma consulta com a médica "Dra. Daniela"

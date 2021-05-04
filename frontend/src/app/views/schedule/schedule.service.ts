@@ -52,6 +52,13 @@ export class ScheduleService {
         retry(2)
       );
   }
+  getConsultasPaciente(cpf: string): Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(this.url + `patient/${cpf}`)
+      .pipe(
+        retry(2)
+      )
+  }
+
   getespecialidade(especialidade: string): Observable<Medical[]> {
    
     return this.http.get<Medical[]>(this.url + `/schedulings/${especialidade}`)
@@ -59,6 +66,7 @@ export class ScheduleService {
         retry(2)
       );
   }
+
   getScheduleByDay(day: string): Observable<Medical[]> {
     return this.http.get<Medical[]>(this.url + `/schedulings/${day}`)
       .pipe(
@@ -71,6 +79,6 @@ export class ScheduleService {
         retry(2)
       );
   }
-
+  
 
 }

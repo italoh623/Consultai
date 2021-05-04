@@ -59,7 +59,7 @@ export class MedicalComponent implements OnInit {
             id,
             patientCPF,
             medicCRM,
-            parseISO(String(horario)),
+            horario,
             parseISO(String(created_at)),
             parseISO(String(updated_at))
           );
