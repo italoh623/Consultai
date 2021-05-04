@@ -1,5 +1,5 @@
 import Feedback from "../models/Feedback"
-import nodemailer, { Transport } from 'nodemailer'
+import nodemailer from 'nodemailer'
 
 interface ICreateFeedbackDTO {
     consultaId: string
@@ -9,8 +9,9 @@ interface ICreateFeedbackDTO {
 
 class FeedbacksList {
     private feedbacks: Feedback[]
+    private static INSTANCE: FeedbacksList
 
-    constructor() {
+    private constructor() {
         this.feedbacks = [
             {
                 id: '15',
@@ -19,6 +20,13 @@ class FeedbacksList {
                 descricao: 'kkkkkkkkkkkkkkkk F.'
             },
         ]
+    }
+
+    public static getInstance() {
+        if(!FeedbacksList.INSTANCE) {
+            FeedbacksList.INSTANCE = new FeedbacksList()
+        }
+        return FeedbacksList.INSTANCE
     }
 
     findById(id: string): Feedback {

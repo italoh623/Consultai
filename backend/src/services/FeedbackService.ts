@@ -2,7 +2,8 @@ import FeedbacksList from "../lists/FeedbacksList"
 import MedicalAppointmentsList from "../lists/MedicalAppointmentsList"
 import MedicsList from "../lists/MedicsList"
 import SchedulingsList from "../lists/SchedulingsList"
-import MedicalAppointment from "../models/MedicalAppointment"
+import Feedback from "../models/Feedback"
+// import MedicalAppointment from "../models/MedicalAppointment"
 
 class FeedbackService {
     private feedbackList: FeedbacksList
@@ -26,23 +27,26 @@ class FeedbackService {
     getEmail(consultaId: string): string {
         const medicalAppointment = this.medicalAppointmentsList.findById(consultaId)
         const agendamentoId = medicalAppointment.agendamentoId
-        console.log(agendamentoId)
+        // console.log(agendamentoId)
 
         const schedule = this.schedulingsList.findById(agendamentoId)
         const medicCRM = schedule.medicCRM
+        // console.log(medicCRM)
 
         const medic = this.medicsList.findByCrm(medicCRM)
         const email = medic.email
+        // console.log(email)
 
         return email
     } 
 
-    async execute({ consultaId, rating, descricao }) {
+    async execute({ consultaId, rating, descricao }): Promise<Feedback> {
         const createFeedback = this.feedbackList.create({
             consultaId,
             rating,
             descricao
         })
+        // console.log(createFeedback)
 
         await this.feedbackList.sendEmail(createFeedback.id, this.getEmail(createFeedback.consultaId))
 

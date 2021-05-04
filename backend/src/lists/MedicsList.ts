@@ -1,4 +1,5 @@
 import Medic from '../models/Medic'
+import FeedbacksList from './FeedbacksList';
 const date1 = new Date("Mon, 3 May 2021 13:00:00");
 const date2 = new Date("Mon, 3 May 2021 13:30:00");
 const date3 = new Date("Mon, 3 May 2021 14:00:00");
@@ -8,8 +9,9 @@ const date6 = new Date("Mon, 12 May 2021 21:30:00");
 const date7 = new Date("Mon, 30 May 2021 17:30:00");
 class MedicsList {
     private medics: Medic[]
+    private static INSTANCE: MedicsList
 
-    constructor() {
+    private constructor() {
         this.medics = [
             {
                 crm: '123',
@@ -65,6 +67,13 @@ class MedicsList {
            },
            
         ]
+    }
+
+    public static getInstance():MedicsList {
+        if(!MedicsList.INSTANCE) {
+            MedicsList.INSTANCE = new MedicsList()
+        }
+        return MedicsList.INSTANCE
     }
 
     create(crm: string, nome: string, especialidade: string, email: string): Medic {

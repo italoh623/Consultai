@@ -6,14 +6,15 @@ import SchedulingService from '../services/SchedulingService'
 
 const schedulingsRouter = Router()
 
-const schedulingsList = new SchedulingsList()
-const medicsList = new MedicsList()
+const schedulingsList = SchedulingsList.getInstance()
+const medicsList = MedicsList.getInstance()
 const patientsList = new PatientsList()
 const schedulingService = new SchedulingService(schedulingsList, medicsList,patientsList)
 
 schedulingsRouter.post('/', (request, response) => {
     try {
         const { horario, patientCPF, medicCRM } = request.body
+        // console.log(horario, patientCPF, medicCRM)
 
         const schedule = schedulingService.agendar(horario, patientCPF, medicCRM)
 
@@ -62,6 +63,14 @@ schedulingsRouter.get('/medic/:crm', (request, response) => {
     const { crm } = request.params
 
     const schedules = schedulingService.findAllByCrm(crm)
+
+    return response.json(schedules)
+})
+
+schedulingsRouter.get('/patient/:cpf', (request, response) => {
+    const { cpf } = request.params
+
+    const schedules = schedulingService.findAllByCrm(cpf)
 
     return response.json(schedules)
 })

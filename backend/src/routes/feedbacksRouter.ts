@@ -6,10 +6,10 @@ import SchedulingsList from '../lists/SchedulingsList'
 import FeedbackService from '../services/FeedbackService'
 
 const feedbacksRouter = Router()
-const feedbacksList = new FeedbacksList()
-const medicalAppointmentsList = new MedicalAppointmentsList()
-const schedulingsList = new SchedulingsList()
-const medicsList = new MedicsList()
+const feedbacksList = FeedbacksList.getInstance()
+const medicalAppointmentsList = MedicalAppointmentsList.getInstance()
+const schedulingsList = SchedulingsList.getInstance()
+const medicsList = MedicsList.getInstance()
 
 
 feedbacksRouter.post('/', async(request, response) => {

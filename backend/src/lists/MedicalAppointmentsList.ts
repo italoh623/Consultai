@@ -4,6 +4,8 @@ import MedicalAppointment from "../models/MedicalAppointment"
 class MedicalAppointmentsList {
     private medicalAppointments: MedicalAppointment[]
 
+    private static INSTANCE: MedicalAppointmentsList 
+
     constructor() {
         this.medicalAppointments = [
         {
@@ -21,6 +23,13 @@ class MedicalAppointmentsList {
     ]
 }
 
+    public static getInstance() {
+        if(!MedicalAppointmentsList.INSTANCE) {
+            MedicalAppointmentsList.INSTANCE = new MedicalAppointmentsList()
+        }
+        return MedicalAppointmentsList.INSTANCE
+    }
+
     create(agendamentoId: string): MedicalAppointment {
         const medicalAppointment = new MedicalAppointment()
 
@@ -34,8 +43,8 @@ class MedicalAppointmentsList {
         return medicalAppointment
     }
 
-    findById(agendamentoId: string): MedicalAppointment {
-        const existentAppointment = this.medicalAppointments.find(appointment => appointment.agendamentoId === agendamentoId)
+    findById(id: string): MedicalAppointment {
+        const existentAppointment = this.medicalAppointments.find(appointment => appointment.id === id)
 
         return existentAppointment
     }
