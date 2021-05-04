@@ -6,11 +6,13 @@ import { retry, map } from 'rxjs/operators';
 import { MedicalAppointment } from '../../../../../common/models/MedicalAppointment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AnamnesisService {
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  private url = 'http://localhost:4200';
+  private url = 'http://localhost:3333';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +31,7 @@ export class AnamnesisService {
   }
 
   update(medicalAppointment: MedicalAppointment): Observable<MedicalAppointment | null> {
-    return this.http.put<any>(this.url + "/medicalAppointment", JSON.stringify(medicalAppointment), { headers: this.headers })
+    return this.http.put<any>(this.url + "/medicalAppointments", JSON.stringify(medicalAppointment), { headers: this.headers })
       .pipe(
         retry(2),
         map(res => { 
@@ -43,7 +45,14 @@ export class AnamnesisService {
   }
 
   index(medicalAppointment: MedicalAppointment): Observable<MedicalAppointment[]> {
-    return this.http.get<MedicalAppointment[]>(this.url + "/medicalAppointment")
+    return this.http.get<MedicalAppointment[]>(this.url + "/medicalAppointments")
+      .pipe(
+        retry(2)
+      );
+  }
+
+  delete(medicalAppointmentId: string): void {
+    this.http.delete(this.url + `/medicalAppointments/${medicalAppointmentId}`)
       .pipe(
         retry(2)
       );

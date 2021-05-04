@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Schedule } from '../../../../../common/models/Schedule';
 
 import { AppointmentComponent } from '../appointment/appointment.component';
 import { ScheduleService } from '../schedule/schedule.service';
+import { AnamnesisService } from './anamnesis-call.service';
 
 @Component({
   selector: 'app-anamnesis-call',
@@ -17,20 +18,29 @@ export class AnamnesisCallComponent implements OnInit {
   patientCPF: string = "123";
   medicCRM: string = '123';
 
+  consultaId: string | null;
+
   constructor(
     public dialog: MatDialog, 
     private route: ActivatedRoute,
-    private scheduleService: ScheduleService
+    private router: Router,
+    private scheduleService: ScheduleService,
+    private anamnesisService: AnamnesisService
   ) { }
 
   ngOnInit(): void {
+    this.consultaId = this.route.snapshot.paramMap.get('id');
+    console.log(this.consultaId)
+
+    if (!this.consultaId) {
+      this.consultaId = ''
+    }
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AppointmentComponent);
-    const consultaId = this.route.snapshot.paramMap.get('id');
     
-    dialogRef.componentInstance.consultaId = String(consultaId);
+    dialogRef.componentInstance.consultaId = String(this.consultaId);
     dialogRef.componentInstance.patientCPF = this.patientCPF;
     dialogRef.componentInstance.medicCRM = this.medicCRM;
 
@@ -39,7 +49,7 @@ export class AnamnesisCallComponent implements OnInit {
     });
   }
 
-  solicitarConsulta() {
+  solicitarConsulta(): void {
     const today = new Date();
     const nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
 
@@ -50,9 +60,16 @@ export class AnamnesisCallComponent implements OnInit {
       nextweek,
       new Date(),
       new Date()
-      ));
+      ))
+      .subscribe(data => {
+        console.log(data)
+      })
       
     alert("Consulta presencial marcada para a próxima semana")
+  }
+
+  finalizarConsulta(): void {
+    this.anamnesisService.delete(String(this.consultaId))
   }
 
 }

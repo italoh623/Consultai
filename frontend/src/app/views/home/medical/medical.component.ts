@@ -105,7 +105,8 @@ export class MedicalComponent implements OnInit {
   navigateToMedicalAppointment(scheduleId: string) {
     this.medicalService.getMedicalAppointment(scheduleId)
       .subscribe(data => {
-        const id = data;
+        const { id } = data;
+        console.log(data)
 
         if (data) {
           this.router.navigateByUrl(`anamnesis-call/${id}`);
