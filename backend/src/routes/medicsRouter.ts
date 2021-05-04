@@ -68,7 +68,7 @@ medicsRouter.get('/schedules/:crm', (request, response) => {
 
 medicsRouter.post('/apt-file', (request, response) => {
     const { 
-        pacientCPF, 
+        patientCPF, 
         medicCRM, 
         consultaId, 
         queixas, 
@@ -83,7 +83,7 @@ medicsRouter.post('/apt-file', (request, response) => {
     } = request.body
 
     const file = medicsService.insertAppointmentFile(
-        pacientCPF, 
+        patientCPF, 
         medicCRM, 
         consultaId, 
         queixas, 
@@ -104,6 +104,12 @@ medicsRouter.get('/apt-files/:cpf', (request, response) => {
     const { cpf } = request.params
     const files = medicsService.getPatientFiles(cpf)
 
+    return response.json(files)
+})
+
+medicsRouter.get('/apt-files/all', (request, response) => {
+    const files = medicsService.getAllFiles()
+    console.log(files)
     return response.json(files)
 })
 

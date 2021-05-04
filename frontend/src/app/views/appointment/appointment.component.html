@@ -1,6 +1,6 @@
 <div mat-dialog-title>
     <h1>Consulta</h1>
-    <span>Paciente: John Doe</span>
+    <span>{{ patientName }}</span>
 </div>
 
 <form [formGroup]="appointmentForm" mat-dialog-content>
@@ -12,7 +12,7 @@
             id="" 
             cols="100%" 
             rows="3"
-            formControlName="appointmentComplaints"
+            formControlName="queixas"
         ></textarea>
     </div>
     <hr>
@@ -24,7 +24,7 @@
             id="" 
             cols="100%" 
             rows="3"
-            formControlName="appointmentPreviousDiseases"
+            formControlName="doencas"
         ></textarea>
     </div>
     <hr>
@@ -36,7 +36,7 @@
             id="" 
             cols="100%" 
             rows="3"
-            formControlName="appointmentMedications"
+            formControlName="medicacoes"
         ></textarea>
     </div>
     <hr>
@@ -48,7 +48,7 @@
             id="" 
             cols="100%" 
             rows="3"
-            formControlName="appointmentFamilyBackground"
+            formControlName="antecedentes"
         ></textarea>
     </div>
     <hr>
@@ -61,7 +61,7 @@
             cols="100%"
             rows="3" 
             style="margin-bottom: 10px;"
-            formControlName="appointmentPhysicalExam"
+            formControlName="exameFisico"
         ></textarea>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Peso</span>
@@ -71,7 +71,8 @@
                 placeholder="Em quilogramas" 
                 aria-label="Weight"
                 aria-describedby="basic-addon1"
-                formControlName="appointmentWeight"
+                formControlName="peso"
+                (keyup)="imc()"
             >
         </div>
         <div class="input-group mb-3">
@@ -82,7 +83,8 @@
                 placeholder="Em metros" 
                 aria-label="Height"
                 aria-describedby="basic-addon1"
-                formControlName="appointmentHeight"
+                formControlName="altura"
+                (keyup)="imc()"
             >
         </div>
         <div class="input-group mb-3">
@@ -93,17 +95,12 @@
                 placeholder="PAS x PAD" 
                 aria-describedby="basic-addon1"
                 style="width: 30px;"
-                formControlName="appointmentBloodPressure"
+                formControlName="pressao_art"
             >
         </div>
-        <div>
-            <span hidden>IMC = </span>
+        <div *ngIf="calcIMC">
+            <span>IMC = {{ imcValue }}</span>
         </div>
-    </div>
-    <hr>
-    <div>
-        <h3>Exames Complementares</h3>
-        <button>Adicionar <i class="fas fa-file-upload"></i></button>
     </div>
     <hr>
     <div>
@@ -114,7 +111,7 @@
             id=""
             cols="100%" 
             rows="3"
-            formControlName="appointmentDiagnosticHypothesis"
+            formControlName="hipotese"
         ></textarea>
     </div>
     <hr>
@@ -126,22 +123,9 @@
             id="" 
             cols="100%" 
             rows="3"
-            formControlName="appointmentConduct"
+            formControlName="conduta"
         ></textarea>
     </div>
-    <hr>
-    <button type="button" style="margin-right:15px" class="btn btn-primary">
-        Adicionar receituário
-    </button>
-    <button type="button" style="margin-right:15px" class="btn btn-primary">
-        Adicionar solicitação de exame
-    </button>
-    <button type="button" style="margin-right:15px" class="btn btn-primary">
-        Adicionar atestado
-    </button>
-    <button type="button" style="margin-right:15px" class="btn btn-primary">
-        Adicionar encaminhamento
-    </button>
 
 
 </form>

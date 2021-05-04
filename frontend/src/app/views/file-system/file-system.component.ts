@@ -1,5 +1,5 @@
 import { analyzeAndValidateNgModules, NONE_TYPE } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, destroyPlatform, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Archive } from '../../../../../common/models/Archive'; 
@@ -37,7 +37,9 @@ export class FileSystemComponent implements OnInit {
         file_obs,
         file_description,
         imagem
-      ).subscribe(data => console.log(data))
+      ).subscribe(data => {
+        console.log(data)
+      })
 
     }else{
       alert('Nenhum arquivo válido selecionado')

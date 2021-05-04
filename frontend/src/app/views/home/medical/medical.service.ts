@@ -47,4 +47,12 @@ export class MedicalService {
       )
   }
 
+  addAppointmentFile(aptFile: AppointmentFile) {
+    console.log(aptFile)
+    return this.http.post<AppointmentFile>(this.url + `/apt-file`, aptFile, {headers: this.headers})
+      .pipe(
+        retry(2)
+      )
+  }
+
 }
