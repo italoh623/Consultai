@@ -1,5 +1,5 @@
 import Medic from '../models/Medic'
-import FeedbacksList from './FeedbacksList';
+// import FeedbacksList from './FeedbacksList';
 const date1 = new Date("Mon, 3 May 2021 13:00:00");
 const date2 = new Date("Mon, 3 May 2021 13:30:00");
 const date3 = new Date("Mon, 3 May 2021 14:00:00");
@@ -69,7 +69,7 @@ class MedicsList {
         ]
     }
 
-    public static getInstance():MedicsList {
+    public static getInstance(): MedicsList {
         if(!MedicsList.INSTANCE) {
             MedicsList.INSTANCE = new MedicsList()
         }

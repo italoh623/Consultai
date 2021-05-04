@@ -13,17 +13,21 @@ const medicsList = MedicsList.getInstance()
 
 
 feedbacksRouter.post('/', async(request, response) => {
-    const { consultaId, rating, descricao } = request.body
+    try {
+        const { consultaId, rating, descricao } = request.body
 
-    const sendFeedbackService = new FeedbackService(feedbacksList, medicalAppointmentsList, schedulingsList, medicsList)
+        const sendFeedbackService = new FeedbackService(feedbacksList, medicalAppointmentsList, schedulingsList, medicsList)
 
-    await sendFeedbackService.execute({ 
-        consultaId,  
-        rating,
-        descricao
-    })
+        await sendFeedbackService.execute({ 
+            consultaId,  
+            rating,
+            descricao
+        })
 
-    return response.json({ status: 'Email enviado com sucesso' })
+        return response.json({ status: 'Email enviado com sucesso' })
+        } catch(err) {
+            return response.status(400).json({ error: err.message })
+        }
 })
 
 

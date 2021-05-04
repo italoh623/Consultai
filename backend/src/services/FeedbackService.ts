@@ -1,4 +1,4 @@
-import FeedbacksList from "../lists/FeedbacksList"
+import IFeedbacksList from "../lists/IFeedbacksList"
 import MedicalAppointmentsList from "../lists/MedicalAppointmentsList"
 import MedicsList from "../lists/MedicsList"
 import SchedulingsList from "../lists/SchedulingsList"
@@ -6,12 +6,12 @@ import Feedback from "../models/Feedback"
 // import MedicalAppointment from "../models/MedicalAppointment"
 
 class FeedbackService {
-    private feedbackList: FeedbacksList
+    private feedbackList: IFeedbacksList
     private medicalAppointmentsList: MedicalAppointmentsList
     private schedulingsList: SchedulingsList
     private medicsList: MedicsList
 
-    constructor(feedbackList: FeedbacksList, medicalAppointmentsList: MedicalAppointmentsList, schedulingsList: SchedulingsList, medicsList: MedicsList ) {
+    constructor(feedbackList: IFeedbacksList, medicalAppointmentsList: MedicalAppointmentsList, schedulingsList: SchedulingsList, medicsList: MedicsList ) {
         this.feedbackList = feedbackList
         this.medicalAppointmentsList = medicalAppointmentsList
         this.schedulingsList = schedulingsList
@@ -24,7 +24,7 @@ class FeedbackService {
         return medicalAppointment
     } */
 
-    getEmail(consultaId: string): string {
+    /* getEmail(consultaId: string): string {
         const medicalAppointment = this.medicalAppointmentsList.findById(consultaId)
         const agendamentoId = medicalAppointment.agendamentoId
         // console.log(agendamentoId)
@@ -38,7 +38,7 @@ class FeedbackService {
         // console.log(email)
 
         return email
-    } 
+    } */ 
 
     async execute({ consultaId, rating, descricao }): Promise<Feedback> {
         const createFeedback = this.feedbackList.create({
@@ -48,7 +48,19 @@ class FeedbackService {
         })
         // console.log(createFeedback)
 
-        await this.feedbackList.sendEmail(createFeedback.id, this.getEmail(createFeedback.consultaId))
+        const medicalAppointment = this.medicalAppointmentsList.findById(createFeedback.consultaId)
+        const agendamentoId = medicalAppointment.agendamentoId
+        // console.log(agendamentoId)
+
+        const schedule = this.schedulingsList.findById(agendamentoId)
+        const medicCRM = schedule.medicCRM
+        // console.log(medicCRM)
+
+        const medic = this.medicsList.findByCrm(medicCRM)
+        const emailMedic = medic.email
+        // console.log(email)
+
+        await this.feedbackList.sendEmail(createFeedback.id, emailMedic)
 
         return createFeedback
     }
