@@ -3,7 +3,7 @@
         <div class="card" style="width: 18rem;">
             <img src="../../assets/avatar-pic.jpeg" class="card-img-top" alt="Foto de Perfil">
             <div class="card-body">
-              <h5 class="card-title" style="text-align: center;">John Doe</h5>
+              <h5 class="card-title" style="text-align: center;">{{patient.name}}</h5>
             </div>
         </div>
     </div>
@@ -11,8 +11,8 @@
         <div class="dados-gerais">
             <h3>Dados Gerais</h3>
             <ul>
-              <li><b>Data de nascimento:</b> 22/10/1999</li>
-              <li><b>Sexo:</b> Masculino</li>
+              <li><b>Idade</b> {{patient.idade}}</li>
+              <li><b>Email:</b> {{patient.email}}</li>
             </ul>
         </div>
         <hr>
@@ -59,16 +59,11 @@
                     <th scope="col">Especialidade</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let file of cleanFiles">
                   <tr>
-                    <th scope="row"><a href="#">13/01/2021</a></th>
-                    <td>Dra. Bruna Almeida</td>
-                    <td>Cirurgia Geral</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="#">22/11/2020</a></th>
-                    <td>Dr. Hannibal Lector</td>
-                    <td>Psiquiatria</td>
+                    <th scope="row"><a href="#">{{ file.data }}</a></th>
+                    <td>{{ file.medicName }}</td>
+                    <td>{{ file.medicEspec }}</td>
                   </tr>
                 </tbody>
             </table>

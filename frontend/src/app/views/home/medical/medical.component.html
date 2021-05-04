@@ -6,7 +6,7 @@
     </ng-template>
 
     <div class="listPatient">
-      <button mat-card class="card" *ngFor="let patient of patients">
+      <button mat-card class="card" *ngFor="let patient of patients" (click)="goToRecord(patient.cpf)">
         <header>
           <mat-card-title>{{ patient.name }}</mat-card-title>
           <mat-card-subtitle>{{ patient.idade }} Anos</mat-card-subtitle>
