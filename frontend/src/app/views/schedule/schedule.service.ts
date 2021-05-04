@@ -13,12 +13,12 @@ import { Medical } from '../../../../../common/models/Medical';
 export class ScheduleService {
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  private url = 'http://localhost:4200';
+  private url = 'http://localhost:3333';
 
   constructor(private http: HttpClient) { }
 
   create(schedule: Schedule): Observable<Schedule | null> {
-    return this.http.post<any>(this.url + "/schedule", schedule, { headers: this.headers })
+    return this.http.post<any>(this.url + "/schedulings", schedule, { headers: this.headers })
       .pipe(
         retry(2),
         map(res => {
@@ -32,7 +32,7 @@ export class ScheduleService {
   }
 
   update(schedule: Schedule): Observable<Schedule | null> {
-    return this.http.put<any>(this.url + "/schedule", JSON.stringify(schedule), { headers: this.headers })
+    return this.http.put<any>(this.url + "/schedulings", JSON.stringify(schedule), { headers: this.headers })
       .pipe(
         retry(2),
         map(res => {
@@ -46,13 +46,13 @@ export class ScheduleService {
   }
 
   index(schedule: Schedule): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(this.url + "/schedule")
+    return this.http.get<Schedule[]>(this.url + "/schedulings")
       .pipe(
         retry(2)
       );
   }
   getespecialidade(especialidade: string): Observable<Medical[]> {
-    return this.http.get<Medical[]>(this.url + `/schedule/${especialidade}`)
+    return this.http.get<Medical[]>(this.url + `/schedulings/${especialidade}`)
       .pipe(
         retry(2)
       );

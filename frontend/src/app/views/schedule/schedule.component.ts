@@ -24,8 +24,9 @@ export class ScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.scheduleService.getespecialidade("")
+    this.scheduleService.getespecialidade("dermatologista")
       .subscribe(data => {
+        console.log(data);
         this.medicos = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
           return new Medical(
             crm,
