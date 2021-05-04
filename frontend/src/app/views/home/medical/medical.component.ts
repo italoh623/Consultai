@@ -100,4 +100,9 @@ export class MedicalComponent implements OnInit {
     this.router.navigateByUrl(`/`)
   }
 
+  goToRecord(cpf: string) {
+    console.log(cpf)
+    this.router.navigateByUrl(`/record/${cpf}`)
+  }
+
 }
