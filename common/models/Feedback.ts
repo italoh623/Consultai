@@ -4,8 +4,7 @@ export class Feedback {
   rating: string
   descricao: string
 
-  constructor(id: string, consultaId: string, rating: string, descricao: string) {
-    this.id = id;
+  constructor(consultaId: string, rating: string, descricao: string) {
     this.consultaId = consultaId;
     this.rating = rating;
     this.descricao = descricao;

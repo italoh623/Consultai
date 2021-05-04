@@ -35,7 +35,7 @@ const routes: Routes = [
     component: ScheduleComponent 
   },
   {
-    path: 'feedback',
+    path: 'feedback/:id',
     component: FeedbackComponent
   }
 ];

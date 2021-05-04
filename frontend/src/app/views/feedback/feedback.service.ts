@@ -17,7 +17,7 @@ export class FeedbackService {
   constructor(private http: HttpClient) { }
 
   enviarEmail(feedback: Feedback): Observable<Feedback | null> {
-    return this.http.post<Feedback[]>(this.url + `/feedbacks`, feedback , { headers: this.headers})
+    return this.http.post<Feedback[]>(this.url, feedback , { headers: this.headers})
       .pipe(
         retry(2),
         map(res => { 

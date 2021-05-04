@@ -1,12 +1,22 @@
 <form [formGroup]="formFeedback" class="form">
-  <input type="text" placeholder="Avalie" formControlName="feedbackInput">
+  <div class="rating">
+    <span>Avalie sua Consulta: </span>
+    <input type="radio" id="Ruim" name="rating" value="Ruim" (change)="changeRating('Ruim')">
+    <label for="Ruim">Ruim</label>
+    <input type="radio" id="Regular" name="rating" value="Regular" (change)="changeRating('Regular')">
+    <label for="Regular">Regular</label>
+    <input type="radio" id="Bom" name="rating" value="Bom" (change)="changeRating('Bom')">
+    <label for="Bom">Bom</label>
+    <input type="radio" id="Otimo" name="rating" value="Otimo" (change)="changeRating('Otimo')">
+    <label for="Otimo">Ótimo</label>
+  </div>
 
   <textarea 
     name="" 
     id="" 
     cols="30" 
     rows="10"
-    formControlName="FeedbackDescription"
+    formControlName="descricao"
     placeholder="Deixe seu comentário"
   >
   </textarea>
