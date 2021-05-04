@@ -7,12 +7,11 @@ const medicalAppointmentsRouter = Router()
 const schedulingsList = SchedulingsList.getInstance()
 const medicalAppointmentsList = MedicalAppointmentsList.getInstance()
 
+const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
 
 medicalAppointmentsRouter.post('/', (request, response) => {
     try {
         const { agendamentoId } = request.body
-    
-        const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
 
         const createMedicalAppointment = medicalAppointmentService.create(agendamentoId)
 
@@ -25,8 +24,6 @@ medicalAppointmentsRouter.post('/', (request, response) => {
 medicalAppointmentsRouter.get('/agendamento/:agendamentoId', (request, response) => {
     const { agendamentoId } = request.params
     
-    const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
-
     const medicalAppointment = medicalAppointmentService.getMedicalAppointmentbySchedule(agendamentoId)
 
     return response.json(medicalAppointment)
@@ -35,8 +32,6 @@ medicalAppointmentsRouter.get('/agendamento/:agendamentoId', (request, response)
 
 medicalAppointmentsRouter.delete('/:id', (request, response) => {
     const { id } = request.params
-
-    const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
 
     medicalAppointmentService.delete(id)
 
