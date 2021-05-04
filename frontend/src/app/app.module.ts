@@ -28,7 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
 import { FileSystemComponent } from './views/file-system/file-system.component';
-import { FileSystemDirective } from './views/file-system/file-system.directive';
 import { ScheduleComponent } from './views/schedule/schedule.component';
 
 @NgModule({
@@ -43,7 +42,6 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
     RecordComponent,
     AppointmentComponent,
     FileSystemComponent,
-    FileSystemDirective,
     ScheduleComponent,
   ],
   imports: [

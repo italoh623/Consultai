@@ -32,10 +32,4 @@ export class ArchiveService {
                 map( res => {if (res.success) {return arquivo;} else {return null;}} )
               ); 
   }
-  getArchives(): Observable<Archive[]> {
-    return this.http.get<Archive[]>(this.url + "/file-system")
-              .pipe(
-                 retry(2)
-               );
-  }
 }
