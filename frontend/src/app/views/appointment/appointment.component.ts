@@ -61,7 +61,8 @@ export class AppointmentComponent implements OnInit {
       let altura = Number(this.appointmentForm.value.altura)
 
       this.imcValue = peso/(altura*altura)
-      this.calcIMC = true
+      if(this.imcValue) { this.calcIMC = true }
+      else { this.calcIMC = false }
     } else {
       this.calcIMC = false
     }
