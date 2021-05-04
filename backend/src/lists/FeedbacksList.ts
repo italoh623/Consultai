@@ -2,6 +2,7 @@ import Feedback from "../models/Feedback"
 import nodemailer, { Transport } from 'nodemailer'
 
 interface ICreateFeedbackDTO {
+    consultaId: string
     rating: string
     descricao: string
 }
@@ -12,7 +13,7 @@ class FeedbacksList {
     constructor() {
         this.feedbacks = [
             {
-                id: '1',
+                id: '15',
                 consultaId: '12',
                 rating: 'bom',
                 descricao: 'kkkkkkkkkkkkkkkk F.'
@@ -20,10 +21,17 @@ class FeedbacksList {
         ]
     }
 
-    create({ rating, descricao }: ICreateFeedbackDTO): Feedback {
+    findById(id: string): Feedback {
+        const feedback = this.feedbacks.find(feedback => feedback.id === id)
+
+        return feedback
+    }
+
+    create({ consultaId, rating, descricao }: ICreateFeedbackDTO): Feedback {
         const feedback = new Feedback()
 
         Object.assign(feedback, {
+            consultaId,
             rating,
             descricao
         })
@@ -51,9 +59,9 @@ class FeedbacksList {
         const message = await transporter.sendMail({
                 from: 'Consultai <no-replay@consultai.com.br>', 
                 to: email,
-                subject: "Feedback ✔", // Subject line
+                subject: "Feedback ✔", 
                 text: `Você acabou de receber uma avaliação com métrica ${rating} que diz: ${descricao}`,
-                html: "Você acabou de receber uma avaliação com métrica <b>${rating}</b> que diz: <b>${comment}</b>"
+                html: `Você acabou de receber uma avaliação com métrica <b>${rating}</b> que diz: <b>${descricao}</b>`
               })
     
             console.log("Message sent: %s", message.messageId);

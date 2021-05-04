@@ -4,6 +4,7 @@ import PatientsList from'../lists/PatientsList'
 import Medic from '../models/Medic'
 import Patient from '../models/Patient'
 import { format, getDaysInMonth, getDate, getHours, isAfter, parseISO } from 'date-fns'
+import Scheduling from '../models/Scheduling'
 // import Scheduling from '../models/Scheduling'
 
 interface Request {
@@ -36,11 +37,35 @@ class SchedulingService {
 
     agendar(horario: Date, patientCPF: string, medicCRM:string) {
         // métodos de procura para alocar uma consulta precisam ser criados ainda
+        const getAllSchedule = this.schedulingList.findAllByCPF(patientCPF)
+
+        const existentSchedule = getAllSchedule.some(schedule => schedule.medicCRM === medicCRM)
+
+        if(existentSchedule) {
+            throw new Error('You already booked one schedule with this doctor.')
+        }
+        
         const schedule = this.schedulingList.create(horario, patientCPF, medicCRM)
 
         return schedule
     }
     
+    getMedic(medicCRM: string) {
+        const medic = this.medicsList.findByCrm(medicCRM)
+
+        return medic
+    }
+    getAll() {
+        const medics = this.medicsList.getAll()
+        return medics
+    }
+
+    findAllByCrm(medicCRM: string): Scheduling[] {
+        const schedules = this.schedulingList.findAllByCRM(medicCRM)
+
+        return schedules
+    }
+
     filtrarPorEspecialidade(especialidade: string): Medic[] {
         const medicOfSpeciality = this.medicsList.findBySpeciality(especialidade)
 

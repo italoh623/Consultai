@@ -4,7 +4,7 @@ Agendamento da consulta
 
 <form [formGroup]="inputs">
     <input formControlName="especialidade_input" type="text" placeholder="Digite uma especialidade">
-    <button (click)="filtrarEspecialidade()">Filtrar Especialidade</button>
+    <button (click)="filtrarEspecialidade('dermatologista')">Filtrar Especialidade</button>
 </form>
 
 <form [formGroup]="inputs">
@@ -12,46 +12,19 @@ Agendamento da consulta
   <button (click)="filtrarData()">Filtrar Data</button>
 </form>
 
+<ul *ngFor="let medico of medicos">
+  <li *ngFor="let horario of medico.horarios">
+     <span>{{medico.name}}  </span>
+     <span>{{medico.especialidade}}  </span>
+     <span>{{medico.crm}}  </span>
+     <span >{{horario.horario}}  </span>
+     <span>{{medico.email}}  </span>
+     <span><button (click)="salvar(1,14,111,1111)">Escolher</button></span>
+     
+  </li>
   
 
-<div>
-  <input placeholder="Digite uma data"/>
-</div>
-<table>
-  <tr>
-     <td><label>Médico: </label></td>
-     <td><label>Daniela </label></td>
-     <td><label> Crm:1111 </label></td>
-     <td><label>14h </label></td>
-     <td><button (click)="salvar(1,14,111,1111)">Escolher</button></td>
-     
-  </tr>
-  <tr>
-    <td><label>Médico: </label></td>
-    <td><label>Daniela </label></td>
-    <td><label> Crm:2222 </label></td>
-    <td><label>15h </label></td>
-    
-    <td><button (click)="salvar(2,15,111,2222)">Escolher</button></td>
-    
-  </tr>
-  <tr>
-    <td><label>Médico: </label></td>
-    <td><label>Daniela </label></td>
-    <td><label> Crm:3333 </label></td>
-    <td><label>16h </label></td>
-    <td><button (click)="salvar(3,16,111,3333)">Escolher</button></td>
-    
-  </tr>
-  <tr>
-    <td><label>Médico: </label></td>
-    <td><label>Daniela </label></td>
-    <td><label> Crm:4444 </label></td>
-    <td><label>17h </label></td>
-    <td><button (click)="salvar(4,17,111,4444)">Escolher</button></td>
- </tr>
-
-  </table>
+</ul>
 
   <div *ngIf="show">
     <p>Você já tem uma consulta marcada. Gostaria de remarcar?</p>

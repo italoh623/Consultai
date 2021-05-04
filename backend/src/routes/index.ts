@@ -6,15 +6,17 @@ import medicsRouter from './medicsRouter'
 import archivesRouter from './archivesRouter'
 import schedulingsRouter from './schedulingsRouter'
 import feedbacksRouter from './feedbacksRouter'
+import medicalAppointmentsRouter from './medicalAppointmentsRouter'
 
 const router = Router()
 
 router.use(cors())
 
 router.use('/patients', patientsRouter)
-router.use('/schedulings', schedulingsRouter)
-router.use('/feedbacks', feedbacksRouter)
 router.use('/medics', medicsRouter)
+router.use('/schedulings', schedulingsRouter)
+router.use('/medical-appointments', medicalAppointmentsRouter)
+router.use('/feedbacks', feedbacksRouter)
 router.use('/archives', archivesRouter)
 
 export default router
