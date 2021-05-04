@@ -72,6 +72,8 @@ class SchedulingService {
         return medicOfSpeciality
     }
 
+
+
     filtrarDisponibilidadePorMes({ medicCRM, date }: Request): ResponseMonth {
         const parsedDate = parseISO(date)
         

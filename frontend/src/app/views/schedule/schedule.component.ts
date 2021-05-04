@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { format, isSameDay, parseISO } from 'date-fns'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Medical } from '../../../../../common/models/Medical';
 import { ScheduleService } from './schedule.service';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
+import { format, getDaysInMonth, getDate, getHours, isAfter, parseISO } from 'date-fns'
+import { formatWithOptions } from 'date-fns/fp'
+import { ptBR } from 'date-fns/locale';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,7 @@ export class ScheduleComponent implements OnInit {
   ngOnInit(): void {
     this.medicos.length = 0;
 
-      this.scheduleService.getall()
+     this.scheduleService.getall()
       .subscribe(data => {
         console.log(data);
         this.medicos = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
@@ -56,7 +58,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   salvar(id: Number, horario: Number, paciente_cpf: Number, medico_crm: Number): void {
-    if (this.consulta.paciente_cpf == paciente_cpf) {
+   /* if (this.consulta.paciente_cpf == paciente_cpf) {
       this.consulta_aux.id = id;
       this.consulta_aux.horario = horario;
       this.consulta_aux.paciente_cpf = paciente_cpf;
@@ -69,7 +71,7 @@ export class ScheduleComponent implements OnInit {
       this.consulta.paciente_cpf = paciente_cpf;
       this.consulta.medico_crm = medico_crm;
       alert("Consulta marcada para às " + this.consulta.horario + "h" + "Com Dr:" + "Nome do médico");
-    }
+    }*/
 
 
   } 
@@ -77,9 +79,10 @@ export class ScheduleComponent implements OnInit {
     //this.especialidade_medica=this.inputs.value.especialidade_input
     //console.log(this.inputs.value.especialidade_input);
     this.medicos.length = 0;
+    console.log(this.inputs.value.especialidade_input);
     this.scheduleService.getespecialidade(this.inputs.value.especialidade_input)
       .subscribe(data => {
-        //console.log(data);
+        console.log(data);
         this.medicos = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
           return new Medical(
             crm,
@@ -96,8 +99,7 @@ export class ScheduleComponent implements OnInit {
 
   }
   filtrarData(){
-   // console.log(this.inputs.value.data_input);
-   this.medicos.length = 0;
+    this.medicos.length = 0;
   }
 
 

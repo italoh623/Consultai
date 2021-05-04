@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 import { Schedule } from '../../../../../common/models/Schedule';
 import { Medical } from '../../../../../common/models/Medical';
+import { Patient } from '../../../../../common/models/Patient';
 
 
 @Injectable({
@@ -52,7 +53,14 @@ export class ScheduleService {
       );
   }
   getespecialidade(especialidade: string): Observable<Medical[]> {
+   
     return this.http.get<Medical[]>(this.url + `/schedulings/${especialidade}`)
+      .pipe(
+        retry(2)
+      );
+  }
+  getScheduleByDay(day: string): Observable<Medical[]> {
+    return this.http.get<Medical[]>(this.url + `/schedulings/${day}`)
       .pipe(
         retry(2)
       );
