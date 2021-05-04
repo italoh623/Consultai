@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Archive } from '../../../../../common/models/Archive'; 
+import { Archive } from '../../../../common/models/Archive'; 
 
 
 @Injectable()
@@ -31,11 +31,5 @@ export class ArchiveService {
                 retry(2),
                 map( res => {if (res.success) {return arquivo;} else {return null;}} )
               ); 
-  }
-  getArchives(): Observable<Archive[]> {
-    return this.http.get<Archive[]>(this.url + "/file-system")
-              .pipe(
-                 retry(2)
-               );
   }
 }
