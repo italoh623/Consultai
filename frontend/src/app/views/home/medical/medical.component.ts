@@ -82,7 +82,7 @@ export class MedicalComponent implements OnInit {
         })
       });
   }
-  
+
   formatDate(date: Date): string {
     return format(date, "dd/MM - HH:mm", { locale: ptBR });
   }
@@ -96,8 +96,16 @@ export class MedicalComponent implements OnInit {
   }
 
   navigateToMedicalAppointment(scheduleId: string) {
-    console.log(scheduleId)
-    this.router.navigateByUrl(`/`)
+    this.medicalService.getMedicalAppointment(scheduleId)
+      .subscribe(data => {
+        const id = data;
+
+        if (data) {
+          this.router.navigateByUrl(`anamnesis-call/${id}`);
+        } else {
+          alert("Consulta médica não iniciada");
+        }
+      })
   }
 
   goToRecord(cpf: string) {

@@ -1,13 +1,11 @@
 import { v1 as uuid } from 'uuid'
 class Archive {
     id: string
-    tipo: string
-    name: string
     crm : string
+    cpf: string
     obs : string
     description : string 
-    tamanho: string
-    conteudo: File
+    conteudo: Object
     created_at: Date
     updated_at: Date
 

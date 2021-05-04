@@ -49,7 +49,9 @@ export class PatientComponent implements OnInit {
 
         if (data) {
           this.router.navigateByUrl(`anamnesis-call/${id}`);
-        } 
+        } else {
+          alert("Consulta médica não iniciada");
+        }
       })
   }
 

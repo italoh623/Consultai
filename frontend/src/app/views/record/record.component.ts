@@ -6,6 +6,11 @@ import { Patient } from '../../../../../common/models/Patient';
 import { MedicalService } from '../home/medical/medical.service';
 import { format, parseISO } from 'date-fns'
 import { PatientService } from '../home/patient/patient.service';
+import { ArchiveService } from '../file-system/file-system.service';
+import { Archive } from '../../../../../common/models/Archive';
+import { MatDialog } from '@angular/material/dialog';
+import { FileSystemComponent } from '../file-system/file-system.component';
+import { ViewFileComponent } from '../view-file/view-file.component';
 
 @Component({
   selector: 'app-record',
@@ -18,8 +23,9 @@ export class RecordComponent implements OnInit {
   patient: Patient;
   files: AppointmentFile[];
   cleanFiles: any[] = [];
+  archives: Archive[];
 
-  constructor(private route: ActivatedRoute, private medicalService: MedicalService, private patientService: PatientService) {
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private medicalService: MedicalService, private patientService: PatientService, private archiveService: ArchiveService) {
     this.patientId = null
   }
 
@@ -28,6 +34,7 @@ export class RecordComponent implements OnInit {
    if (!this.patientId) { this.patientId = '' }
    this.getPatient(this.patientId)
    this.getFiles(this.patientId)
+   this.getArchives(this.patientId)
   }
 
   getFiles(cpf: string) {
@@ -66,5 +73,33 @@ export class RecordComponent implements OnInit {
       })
     })
   }
+
+  getArchives(cpf: string) {
+    this.archiveService.getByCPF(cpf).subscribe(archive => {
+        this.archives = archive.map(({id, crm, cpf, obs, description, conteudo, created_at, updated_at}) => {
+          return new Archive(id, crm, obs, description, cpf, conteudo, format(parseISO(String(created_at)), 'dd/MM/yyyy'))
+        })
+      }
+    )
+  }
+
+  openArchiveUpload() {
+    const dialogRef = this.dialog.open(FileSystemComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  displayArchive(id: string) {
+    const dialogRef = this.dialog.open(ViewFileComponent);
+    dialogRef.componentInstance.fileId = id;
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
 }

@@ -1,34 +1,40 @@
+<html>
 <h1>
-Agendamento da consulta
+  Agendamento da consulta
 </h1>
 
 <form [formGroup]="inputs">
-    <input formControlName="especialidade_input" type="text" placeholder="Digite uma especialidade">
-    <button (click)="filtrarEspecialidade()">Filtrar Especialidade</button>
+  <input 
+    formControlName="especialidade_input" 
+    type="text" 
+    placeholder="Digite uma especialidade"
+    name="inputespecialidade"
+  >
+  <button (click)="filtrarEspecialidade()">Filtrar Especialidade</button>
 </form>
-
 <form [formGroup]="inputs">
-  <input formControlName="data_input" type="text" placeholder="Digite uma data">
-  <button (click)="filtrarData()">Filtrar Data</button>
+  <input formControlName="data_input" type="text" placeholder="Digite uma data" name="inputdata">
+  <button name="filtrar_pesquisa" (click)="filtrarData()">Filtrar Data</button>
+  <button name="reiniciar_pesquisa" (click)="zerar()">Reiniciar pesquisa</button>
 </form>
 
 <ul *ngFor="let medico of medicos">
-  <li *ngFor="let horario of medico.horarios">
-     <span>{{medico.name}}  </span>
-     <span>{{medico.especialidade}}  </span>
-     <span>{{medico.crm}}  </span>
-     <span >{{horario.horario}}  </span>
-     <span>{{medico.email}}  </span>
-     <span><button (click)="salvar(1,14,111,1111)">Escolher</button></span>
-     
+  <li *ngFor="let horario of medico.horarios" name="horarioslist">
+    <span name="name_medico">{{medico.name}} </span>
+    <span name="especialidade_medico">{{medico.especialidade}} </span>
+    <span name="crm_medico">{{medico.crm}} </span>
+    <span name="especialidade_medico">{{horario.horario}} </span>
+    <span name="email_medico">{{medico.email}} </span>
+    <span><button name="salvar_consulta" (click)="salvar(medico.crm,horario.horario) ">Escolher</button></span>
+
   </li>
-  
+
 
 </ul>
 
-  <div *ngIf="show">
-    <p>Você já tem uma consulta marcada. Gostaria de remarcar?</p>
-    <button>Remarcar</button>
-  </div>
- 
+<div *ngIf="show">
+  <p>Você já tem uma consulta marcada. Gostaria de remarcar?</p>
+  <button name="botao_remarcar">Remarcar</button>
+</div>
 
+</html>

@@ -1,29 +1,30 @@
 import { Router } from 'express'
+import ArchiveList from '../lists/ArchiveList'
 import Archive from '../models/Archive'
 
 
 const archivesRouter = Router()
 
+const archivesList = new ArchiveList()
+
 const archives = []
 
 archivesRouter.post('/', (request, response) => {
-    const { tipo, nome, crm, obs, description, tamanho, conteudo } = request.body
+    const { cpf, crm, obs, description, conteudo } = request.body
 
     const archive = new Archive()
 
     Object.assign(archive, {
-        tipo, 
-        nome,
+        cpf,
         crm,
         obs,
         description, 
-        tamanho,
         conteudo,
         created_at: new Date,
         updated_at: new Date
     })
 
-    archives.push(archive)
+    archivesList.add(archive)
 
     return response.json(archive)
 })
@@ -32,8 +33,18 @@ archivesRouter.put('/', (request, response) => {
     return response.send()
 })
 
-archivesRouter.get('/', (request, response) => {
-    return response.send()
+archivesRouter.get('/:cpf', (request, response) => {
+    let { cpf } = request.params
+    let archs = archivesList.getByCPF(cpf)
+
+    response.json(archs)
+})
+
+archivesRouter.get('/id/:id', (request, response) => {
+    let { id } = request.params
+    let arc = archivesList.getById(id)
+
+    response.json(arc)
 })
 
 archivesRouter.delete('/:id', (request, response) => {

@@ -1,36 +1,28 @@
 Feature: Laudos e Docs
 
-	Scenario : scan document
-	Given I am “Doctor” Menu
-	When I choose the scan image
-	And I take a photo of the document from the cellphone
-	Then the photo is scanned
-	And the system applies an image filters on the photo
+	Scenario : Search Exam
+	Given I am at the "Doctor" Menu and look up at the Patient "Joe"
+	When I request to search document and I have a Document "Joe Blood Test" locally stored
+	And i choose the Document "Joe Blood Test"
+	Then the Document "Joe Blood Test" is inputed
 
-	Scenario : Request Exams
-	Given I am at the “Doctor” Menu and have Document “Blood Test Result” stored
-	When I request to send document
-	And I choose the Document “Blood Test Result”
-	Then The Document “Blood Test Result” is properly sent 
+	Scenario : Drag and Drop Exam
+	Given I am at the "Doctor" Menu and look up at the Patient "Joe"
+	When I drag and drop the Document "Joe Blood Test" on the field "Drag and Drop"
+	Then the Document "Joe Blood Test" is inputed
 
-	Scenario : View Docs
-	Given I am at the “Doctor” Menu and have Document “Joe X-Ray” stored
-	When I request to view the document
-	And I choose the Document “Joe X-Ray”
-	Then The Document “Joe X-Ray” is properly showed on the screen
-
-	Scenario: Re-edit Document
-	Given I am at the “Send Document” Menu
-	And choose to edit the document “Blood Test”
-	Then I enter the “Write Document” Menu
-	And change the document “Blood Test”
-	And choose to save the document “Blood Test”
-	Then the Document “Blood Test” is now properly edited
-
-	Scenario: Send Document to non existent user
-	Given I am at the “Send Document” Menu
-	And write an invalid user “Ze Karlos” on the “Destination User” input
-	Then Document is not sent
+	Scenario : Submit non existent document 
+	Given I am at the "Archive" Menu and didn't choose any Document
+	When I submit the Archive
+	Then Archive is not submited 
 	And Feedback Error Message is displayed
 
+	Scenario : View Docs
+	Given I am at the "Doctor" Menu and Document "Joe X-ray" stored
+	When I click on the Document "Joe X-ray"
+	Then the Document "Joe X-ray" is displayed
+
+	Scenario : Refresh the Document about Patient
+	Given I am at the "Doctor" Menu and submit a valiable Archive "Joe Radiography" about the Patient "Joe"
+	Then the ArchiveList at the "Joe" Menu show the new submited Archive "Joe Radiography" 
 	

@@ -6,8 +6,8 @@ export class AppointmentFile {
     doencas: string
     medicacoes: string 
     antecedentes: string 
-    peso: Number
-    altura: Number
+    peso: string
+    altura: string
     pressao_art: string
     hipotese: string 
     conduta: string
@@ -21,8 +21,8 @@ export class AppointmentFile {
         doencas: string,
         medicacoes: string, 
         antecedentes: string, 
-        peso: Number,
-        altura: Number,
+        peso: string,
+        altura: string,
         pressao_art: string,
         hipotese: string, 
         conduta: string,

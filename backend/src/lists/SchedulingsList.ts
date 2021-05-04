@@ -77,7 +77,7 @@ class SchedulingsList {
  
     findAllByCPF(patientCPF: string): Scheduling[] {
         const schedule = this.schedules.filter(schedule => schedule.patientCPF === patientCPF)
-
+        
         return schedule
     }
 

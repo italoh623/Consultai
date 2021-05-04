@@ -27,7 +27,8 @@ class SchedulingService {
     private schedulingList: SchedulingList
     private medicsList: MedicsList
     private patientsList: PatientsList
-
+    private tipo_data_mes_ano='MM/yyyy'
+    private tipo_data_dia_mes_ano='MM/yyyy'
 
     constructor(schedulingList: SchedulingList, medicsList: MedicsList, patientsList: PatientsList) {
         this.schedulingList = schedulingList
@@ -78,16 +79,28 @@ class SchedulingService {
         return medicOfSpeciality
     }
 
-    filtrarDisponibilidadePorMes({ medicCRM, date }: Request): ResponseMonth {
+    getConsultasPaciente(cpf: string): Scheduling[]{
+        const schedules = this.schedulingList.findAllByCPF(cpf)
+        console.log(schedules)
+        return schedules
+    }
+
+    formatarDate(date:string){
         const parsedDate = parseISO(date)
         
-        const formatedDate = format(parsedDate, 'MM/yyyy')
+        const formatedDate = format(parsedDate, this.tipo_data_mes_ano)
+    }
+    filtrarDisponibilidadePorMes({ medicCRM, date }: Request): ResponseMonth {
+        
+       
+        const formatedDate = this.formatarDate(date)
         
         const schedule = this.schedulingList.findAllByCRM(medicCRM)
+        const var_parseISO= parseISO(date);
         // console.log(schedule)
-        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'MM/yyyy') === formatedDate)
+        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, this.tipo_data_mes_ano) === format(var_parseISO, this.tipo_data_mes_ano))
 
-        const [mes, ano] = formatedDate.split('/')
+        const [mes, ano] = format( var_parseISO, this.tipo_data_mes_ano).split('/')
 
         const numberOfDaysInMonth = getDaysInMonth(new Date(Number(ano), Number(mes)-1))
 
@@ -115,11 +128,11 @@ class SchedulingService {
     filtrarDisponibilidadePorDia({ medicCRM, date }: Request): ResponseDay {
         const parsedDate = parseISO(date)
 
-        const formatedDate = format(parsedDate, 'dd/MM/yyyy')
+        const formatedDate = format(parsedDate, this.tipo_data_dia_mes_ano)
 
         const schedule = this.schedulingList.findAllByCRM(medicCRM)
         // console.log(schedule)
-        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario, 'dd/MM/yyyy') === formatedDate)
+        const scheduleDisponiveis = schedule.filter(sch => format(sch.horario,  this.tipo_data_dia_mes_ano) === formatedDate)
 
         const hourStart = 8
 

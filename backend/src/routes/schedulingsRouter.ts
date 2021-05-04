@@ -66,6 +66,13 @@ schedulingsRouter.get('/medic/:crm', (request, response) => {
 
     return response.json(schedules)
 })
+schedulingsRouter.get('/patient/:cpf', (request, response) => {
+    const { cpf } = request.params
+
+    const schedules = schedulingService.getConsultasPaciente(cpf)
+
+    return response.json(schedules)
+})
 
 schedulingsRouter.get('/patient/:cpf', (request, response) => {
     const { cpf } = request.params
