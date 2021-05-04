@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Archive } from '../../../../../common/models/Archive'; 
+import { Archive } from '../../../../common/models/Archive'; 
 
 
 @Injectable()
