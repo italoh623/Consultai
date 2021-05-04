@@ -12,11 +12,15 @@ const patientsList = new PatientsList()
 const schedulingService = new SchedulingService(schedulingsList, medicsList,patientsList)
 
 schedulingsRouter.post('/', (request, response) => {
-    const { horario, patientCPF, medicCRM } = request.body
+    try {
+        const { horario, patientCPF, medicCRM } = request.body
 
-    const schedule = schedulingService.agendar(horario, patientCPF, medicCRM)
+        const schedule = schedulingService.agendar(horario, patientCPF, medicCRM)
 
-    return response.json(schedule)
+        return response.json(schedule)
+    } catch(err) {
+        return response.status(400).json({ error: err.message })
+    }
 })
 
 schedulingsRouter.get('/month', (request, response) => {

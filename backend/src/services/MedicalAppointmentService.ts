@@ -12,8 +12,20 @@ class MedicalAppointmentService {
         this.schedulingsList = schedulingsList
     }
 
-    create(consultaId: string): MedicalAppointment {
-        const medicalAppointment = this.medicalAppointmentsList.create(consultaId)
+    create(agendamentoId: string): MedicalAppointment {
+        const existentAppointment = this.schedulingsList.findById(agendamentoId)
+
+        if(!existentAppointment) {
+            throw new Error('Schedule does not exists!')
+        }
+
+        const existentMedicalAppointment = this.medicalAppointmentsList.findById(agendamentoId)
+
+        if(existentMedicalAppointment) {
+            throw new Error('Medical appointment already exists!')
+        }
+
+        const medicalAppointment = this.medicalAppointmentsList.create(agendamentoId)
 
         return medicalAppointment
     }
@@ -27,6 +39,7 @@ class MedicalAppointmentService {
         
         return schedule
     }
+
 
 }
 
