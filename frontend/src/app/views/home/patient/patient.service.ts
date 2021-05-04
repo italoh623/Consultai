@@ -16,8 +16,8 @@ export class PatientService {
 
   constructor(private http: HttpClient) { }
 
-  listSchedule(cpf: string): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(this.url + `/patients/${cpf}/schedules`)
+  listSchedulings(cpf: string): Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(this.url + `/schedulings/patient/${cpf}`)
       .pipe(
         retry(2)
       );
