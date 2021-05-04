@@ -1,6 +1,8 @@
+import Archive from "./Archive"
+
 class MedicalRecord {
     patientCPF: string
-    conteudo: FileList
+    arquivos: Archive[]
     created_at: Date
     updated_at: Date
 }

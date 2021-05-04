@@ -1,0 +1,28 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.listar {
+  margin: 0 1rem;
+
+  .card {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 1rem;
+    }
+    mat-card-actions {
+      button {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

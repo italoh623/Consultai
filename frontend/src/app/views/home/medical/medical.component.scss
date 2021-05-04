@@ -32,6 +32,11 @@
 
       margin-bottom: 1rem;
     }
+    mat-card-actions {
+      button {
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
 
@@ -41,10 +46,6 @@
   margin: 0 1rem;
 
   .card {
-    // display: flex;
-    // flex-direction: row;
-  
-    // width: 100%;
     min-width: 300px;
     padding: 1rem 0.5rem;
     margin: 1rem;
