@@ -58,7 +58,7 @@ export class ScheduleService {
       );
   }
   getall(): Observable<Medical[]> {
-    return this.http.get<Medical[]>(this.url + `/schedulings/medics`)
+    return this.http.get<Medical[]>(this.url + `/medics`)
       .pipe(
         retry(2)
       );

@@ -1,5 +1,4 @@
 import { v1 as uuid } from 'uuid'
-// Dar uma limpa depois nesses atributos
 class Archive {
     id: string
     tipo: string

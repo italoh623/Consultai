@@ -9,16 +9,20 @@ const medicalAppointmentsList = new MedicalAppointmentsList()
 
 
 medicalAppointmentsRouter.post('/', (request, response) => {
-    const { agendamentoId } = request.body
+    try {
+        const { agendamentoId } = request.body
     
-    const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
+        const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
 
-    const createMedicalAppointment = medicalAppointmentService.create(agendamentoId)
+        const createMedicalAppointment = medicalAppointmentService.create(agendamentoId)
 
-    return response.json(createMedicalAppointment)
+        return response.json(createMedicalAppointment)
+    } catch(err) {
+        return response.status(400).json({ error: err.message })
+    }
 })
 
-medicalAppointmentsRouter.get('/:agendamentoId', (request, response) => {
+medicalAppointmentsRouter.get('/agendamento/:agendamentoId', (request, response) => {
     const { agendamentoId } = request.params
     
     const medicalAppointmentService = new MedicalAppointmentService(medicalAppointmentsList, schedulingsList)
@@ -27,6 +31,7 @@ medicalAppointmentsRouter.get('/:agendamentoId', (request, response) => {
 
     return response.json(schedule)
 })
+
 
 medicalAppointmentsRouter.delete('/:id', (request, response) => {
     const { id } = request.params

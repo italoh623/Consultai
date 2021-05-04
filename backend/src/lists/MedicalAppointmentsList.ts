@@ -21,7 +21,7 @@ class MedicalAppointmentsList {
     ]
 }
 
-    create(agendamentoId: string) {
+    create(agendamentoId: string): MedicalAppointment {
         const medicalAppointment = new MedicalAppointment()
 
         Object.assign(medicalAppointment, {
@@ -32,6 +32,12 @@ class MedicalAppointmentsList {
         this.medicalAppointments.push(medicalAppointment)
 
         return medicalAppointment
+    }
+
+    findById(agendamentoId: string): MedicalAppointment {
+        const existentAppointment = this.medicalAppointments.find(appointment => appointment.agendamentoId === agendamentoId)
+
+        return existentAppointment
     }
 
     edit(id:string, onCall: boolean, url: string): MedicalAppointment {
@@ -55,11 +61,11 @@ class MedicalAppointmentsList {
         this.medicalAppointments.splice(appointmentIndex, 1)
     }
 
-    findById(id: string): MedicalAppointment {
+    /* findById(id: string): MedicalAppointment {
         const medicalAppointment = this.medicalAppointments.find(app => app.id === id)
 
         return medicalAppointment
-    }
+    } */
 
 }
 

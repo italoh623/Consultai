@@ -31,7 +31,7 @@ export default class AppointmentFileList {
         doencas: string,
         medicacoes: string, 
         antecedentes: string, 
-        peso,
+        peso: Number,
         altura: Number,
         pressao_art: string,
         hipotese: string,

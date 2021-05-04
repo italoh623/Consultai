@@ -20,14 +20,15 @@ export class ScheduleComponent implements OnInit {
   //como criar um vetor de consultas?
   medicos: Medical[] = [];
   medicos_especialidade: Medical[] = [];
-
+  private especialidade_medica=""
   constructor(
     private scheduleService: ScheduleService,
     private fb:FormBuilder
   ) { }
 
   ngOnInit(): void {
-    
+    this.medicos.length = 0;
+
       this.scheduleService.getall()
       .subscribe(data => {
         console.log(data);
@@ -51,7 +52,7 @@ export class ScheduleComponent implements OnInit {
         data_input: ['']
 
       });
-      
+
   }
 
   salvar(id: Number, horario: Number, paciente_cpf: Number, medico_crm: Number): void {
@@ -72,12 +73,14 @@ export class ScheduleComponent implements OnInit {
 
 
   } 
-  //filtrarEspecialidade(especialidade:string){
-  filtrarEspecialidade(especialidade:string){
-    this.scheduleService.getespecialidade(especialidade)
+  filtrarEspecialidade(){
+    //this.especialidade_medica=this.inputs.value.especialidade_input
+    //console.log(this.inputs.value.especialidade_input);
+    this.medicos.length = 0;
+    this.scheduleService.getespecialidade(this.inputs.value.especialidade_input)
       .subscribe(data => {
-        console.log(data);
-        this.medicos_especialidade = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
+        //console.log(data);
+        this.medicos = data.map(({ crm, name, especialidade, email, horarios, created_at, updated_at }) => {
           return new Medical(
             crm,
             name,
@@ -89,10 +92,12 @@ export class ScheduleComponent implements OnInit {
           );
         })
       })
-    console.log(this.inputs.value.medicos);
+    //console.log(this.inputs.value.medicos);
+
   }
   filtrarData(){
-    console.log(this.inputs.value.data_input);
+   // console.log(this.inputs.value.data_input);
+   this.medicos.length = 0;
   }
 
 
