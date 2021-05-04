@@ -7,6 +7,7 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
 import { MedicalComponent } from './views/home/medical/medical.component';
 import { PatientComponent } from './views/home/patient/patient.component';
 import { FileSystemComponent } from './views/file-system/file-system.component';
+import { FeedbackComponent } from './views/feedback/feedback.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   { 
     path: 'schedule', 
     component: ScheduleComponent 
+  },
+  {
+    path: 'feedback',
+    component: FeedbackComponent
   }
 ];
 

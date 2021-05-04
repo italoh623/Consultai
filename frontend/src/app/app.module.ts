@@ -23,7 +23,7 @@ import { PatientComponent } from './views/home/patient/patient.component';
 import { SignUpPatientComponent } from './views/sign-up-patient/sign-up-patient.component';
 import { MedicalComponent } from './views/home/medical/medical.component';
 import { AnamnesisCallComponent } from './views/anamnesis-call/anamnesis-call.component';
-import { FeedbackComponent } from './views/anamnesisCall/feedback/feedback.component';
+import { FeedbackComponent } from './views/feedback/feedback.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './views/record/record.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';

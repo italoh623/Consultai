@@ -1,0 +1,25 @@
+<form [formGroup]="formFeedback" class="form">
+  <input type="text" placeholder="Avalie" formControlName="feedbackInput">
+
+  <textarea 
+    name="" 
+    id="" 
+    cols="30" 
+    rows="10"
+    formControlName="FeedbackDescription"
+    placeholder="Deixe seu comentário"
+  >
+  </textarea>
+
+  <button 
+    mat-raised-button 
+    color="primary"
+    matBadge="8" 
+    matBadgePosition="before" 
+    matBadgeColor="accent"
+    (click)="enviar()"
+  >
+    Enviar
+  </button>
+</form>
+
