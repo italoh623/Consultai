@@ -5,7 +5,6 @@ const patientsRouter = Router()
 
 const patientsList = new PatientsList()
 
-
 patientsRouter.post('/', (request, response) => {
     try {
         const { cpf, nome, idade, email } = request.body

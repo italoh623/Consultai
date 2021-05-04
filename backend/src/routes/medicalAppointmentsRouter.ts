@@ -4,8 +4,8 @@ import SchedulingsList from '../lists/SchedulingsList'
 import MedicalAppointmentService from '../services/MedicalAppointmentService'
 
 const medicalAppointmentsRouter = Router()
-const schedulingsList = new SchedulingsList()
-const medicalAppointmentsList = new MedicalAppointmentsList()
+const schedulingsList = SchedulingsList.getInstance()
+const medicalAppointmentsList = MedicalAppointmentsList.getInstance()
 
 
 medicalAppointmentsRouter.post('/', (request, response) => {

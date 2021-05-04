@@ -7,7 +7,9 @@ const date4 = new Date("Mon, 3 May 2021 15:00:00");
 class SchedulingsList {
     private schedules: Scheduling[]
 
-    constructor() {
+    private static INSTANCE: SchedulingsList
+
+    private constructor() {
         this.schedules = [
             {
                 id: '1',
@@ -36,6 +38,13 @@ class SchedulingsList {
         ]
     }
 
+    public static getInstance(): SchedulingsList {
+        if(!SchedulingsList.INSTANCE) {
+            SchedulingsList.INSTANCE = new SchedulingsList()
+        }
+        return SchedulingsList.INSTANCE
+    }
+
     create(horario: Date, patientCPF: string, medicCRM: string):Scheduling { 
         const schedule = new Scheduling()
         
@@ -48,6 +57,7 @@ class SchedulingsList {
         })
 
         this.schedules.push(schedule)
+        console.log(this.schedules)
 
         return schedule
     }

@@ -6,8 +6,8 @@ import MedicService from '../services/MedicService'
 
 const medicsRouter = Router()
 
-const medicsList = new MedicsList()
-const schedulingsList = new SchedulingsList()
+const medicsList = MedicsList.getInstance()
+const schedulingsList = SchedulingsList.getInstance()
 const patientsList = new PatientsList()
 const medicsService = new MedicService(schedulingsList, patientsList, medicsList)
 
